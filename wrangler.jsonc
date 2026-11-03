@@ -1,0 +1,12 @@
+{
+  "name": "ebservices-redesign",
+  "main": "@tanstack/react-start/server-entry",
+  "compatibility_date": "2025-09-24",
+  "compatibility_flags": ["nodejs_compat"],
+  "unsafe": {
+    "bindings": []
+  },
+"placement": {
+  "mode": "smart"
+}
+}

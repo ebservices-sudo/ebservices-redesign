@@ -1,0 +1,279 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-display: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-glow: var(--primary-glow);
+  --color-navy: var(--navy);
+  --color-navy-foreground: var(--navy-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-surface: var(--surface);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --radius: 10px;
+  --background: #f7f8fa;
+  --foreground: #0b0f1a;
+  --surface: #eef1f5;
+  --card: #ffffff;
+  --card-foreground: #0b0f1a;
+  --popover: #ffffff;
+  --popover-foreground: #0b0f1a;
+  --primary: #1556a8;
+  --primary-foreground: #ffffff;
+  --primary-glow: #1556a8;
+  --navy: #0a1a3a;
+  --navy-foreground: #f7f8fa;
+  --secondary: #eef1f5;
+  --secondary-foreground: #0b0f1a;
+  --muted: #eef1f5;
+  --muted-foreground: #586172;
+  --accent: #1556a8;
+  --accent-foreground: #ffffff;
+  --destructive: #c2332b;
+  --destructive-foreground: #ffffff;
+  --border: #e1e5eb;
+  --border-strong: #c6cdd8;
+  --input: #e1e5eb;
+  --ring: #1556a8;
+  --shadow-panel: 0 1px 2px rgba(11, 15, 26, 0.05), 0 12px 32px -20px rgba(11, 15, 26, 0.25);
+  --grid-line: rgba(11, 15, 26, 0.06);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+}
+
+@utility label-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+@utility rule-grid {
+  background-image: linear-gradient(to right, var(--grid-line) 1px, transparent 1px);
+  background-size: 25% 100%;
+}
+
+@utility panel {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-panel);
+}
+
+@utility accent-bar {
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--primary);
+  }
+}
+
+@utility link-underline {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 220ms ease;
+  }
+  &:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+@utility fade-up {
+  animation: fade-up 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Scroll reveal: only hidden when JS is running (html.js is set by the inline head script). */
+.reveal {
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+html.js .reveal[data-visible="false"] {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+@utility float-slow {
+  animation: float-slow 9s ease-in-out infinite;
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Motion (subtle only) ---------- */
+@utility chat-pop {
+  animation: chat-pop 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes chat-pop {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Serif italic accent inside display headings. */
+@utility accent-serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* Infinite horizontal marquee: the track holds the content twice. */
+@utility marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Slow zoom on photos inside a hovered .group. */
+@utility img-zoom {
+  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  :where(.group):hover & {
+    transform: scale(1.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* ---------- Blueprint diagrams ---------- */
+.bp-grid {
+  background-color: #0a1a3a;
+  background-image:
+    linear-gradient(rgba(143, 168, 216, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(143, 168, 216, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: -1px -1px;
+}
+.bp-label {
+  font-family: var(--font-mono);
+  letter-spacing: 0.12em;
+  font-weight: 500;
+}
+.bp-flow {
+  stroke-dasharray: 4 6;
+  animation: bp-flow 1.4s linear infinite;
+}
+@keyframes bp-flow {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bp-flow {
+    animation: none;
+  }
+}
