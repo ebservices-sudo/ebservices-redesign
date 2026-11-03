@@ -43,7 +43,7 @@ function ServicesIndex() {
           />
           <div className={`${WRAP} relative pt-14 pb-20 md:pt-24 md:pb-28 fade-up`}>
             <Eyebrow light>{t("Services", "Shërbimet")}</Eyebrow>
-            <h1 className="mt-8 text-[2.9rem] sm:text-[4.25rem] lg:text-[5.5rem] leading-[0.95] tracking-[-0.045em] max-w-[14ch]">
+            <h1 className="mt-8 text-[2.9rem] sm:text-[4.25rem] lg:text-[5.5rem] leading-[0.95] tracking-[-0.035em] max-w-[14ch]">
               {lang === "sq" ? (
                 <>
                   Pesë shërbime. <Em className="text-[#8FA8D8]">Një ekip.</Em>

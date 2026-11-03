@@ -109,9 +109,9 @@ const BTN_BASE =
 export const BTN_PRIMARY = `${BTN_BASE} bg-primary text-white hover:bg-[#0F4789]`;
 export const BTN_LIGHT = `${BTN_BASE} bg-white text-navy hover:bg-[#E6ECF7]`;
 const BTN_GHOST_DARK =
-  "inline-flex items-center justify-center gap-2 h-14 px-6 rounded-full border border-border-strong font-medium text-[15px] hover:border-foreground transition-colors";
+  "inline-flex items-center justify-center gap-2 h-14 px-6 rounded-full border border-border-strong font-medium text-[15px] hover:border-foreground transition-colors whitespace-nowrap";
 const BTN_GHOST_LIGHT =
-  "inline-flex items-center justify-center gap-2 h-14 px-6 rounded-full border border-white/25 font-medium text-[15px] hover:border-white transition-colors";
+  "inline-flex items-center justify-center gap-2 h-14 px-6 rounded-full border border-white/25 font-medium text-[15px] hover:border-white transition-colors whitespace-nowrap";
 
 /** Round icon at the end of a pill button. */
 function BtnIcon({ children, tone = "light" }: { children: ReactNode; tone?: "light" | "blue" }) {
@@ -285,7 +285,7 @@ export function Hero() {
           </span>
         </div>
 
-        <h1 className="mt-8 md:mt-10 text-[2.9rem] sm:text-[4.25rem] lg:text-[5.5rem] xl:text-[6.4rem] leading-[0.95] tracking-[-0.045em] max-w-[13ch] fade-up [animation-delay:60ms]">
+        <h1 className="mt-8 md:mt-10 text-[2.9rem] sm:text-[4.25rem] lg:text-[5.5rem] xl:text-[6.4rem] leading-[0.95] tracking-[-0.035em] max-w-[13ch] fade-up [animation-delay:60ms]">
           {lang === "sq" ? (
             <>
               Reklama, dizajn & uebsajte që ju sjellin{" "}
@@ -307,7 +307,7 @@ export function Hero() {
                 "Reklama në Meta, dizajn për rrjete sociale, uebsajte, brendim dhe recepsionist me AI. Për biznese në Kosovë dhe Evropë që duan më shumë mesazhe, rezervime dhe shitje.",
               )}
             </p>
-            <div className="mt-8 flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-3">
+            <div className="mt-8 flex flex-col sm:flex-row sm:flex-wrap lg:flex-col xl:flex-row gap-3">
               <WhatsAppButton
                 className={BTN_LIGHT}
                 label={t("Get a free plan", "Merr plan falas")}

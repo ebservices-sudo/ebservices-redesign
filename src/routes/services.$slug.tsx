@@ -85,7 +85,7 @@ function ServiceDetail() {
                 <Eyebrow light>
                   {t("Service", "Shërbimi")} {pad(index + 1)} / {pad(services.length)}
                 </Eyebrow>
-                <h1 className="mt-6 text-[2.75rem] sm:text-[4rem] xl:text-[5.25rem] leading-[0.95] tracking-[-0.045em]">
+                <h1 className="mt-6 text-[2.75rem] sm:text-[4rem] xl:text-[5.25rem] leading-[0.95] tracking-[-0.035em]">
                   {service.name[lang]}
                 </h1>
                 <p className="mt-7 text-lg sm:text-xl text-white/70 max-w-2xl leading-relaxed">
