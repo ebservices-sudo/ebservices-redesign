@@ -86,7 +86,10 @@ export function AdSimulator() {
   const C = 2 * Math.PI * R;
 
   return (
-    <section id="try" className="scroll-mt-20 bg-navy text-white py-24 md:py-36 overflow-hidden">
+    <section
+      id="try"
+      className="scroll-mt-20 bg-navy text-white py-24 md:py-36 overflow-hidden border-t border-white/10"
+    >
       <div className="mx-auto max-w-[1280px] px-5 sm:px-8 grid lg:grid-cols-12 gap-14 lg:gap-10 items-center">
         <Reveal className="lg:col-span-5">
           <p className="inline-flex items-center gap-2.5 text-[12px] font-semibold uppercase tracking-[0.16em] text-[#8FA8D8]">

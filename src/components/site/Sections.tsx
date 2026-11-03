@@ -9,7 +9,6 @@ import {
   Globe,
   Hotel,
   MessageCircle,
-  Plus,
   Scissors,
   ShoppingBag,
   Stethoscope,
@@ -25,7 +24,6 @@ import { BrandLogo, type BrandKey } from "./Brands";
 import {
   AdDesignDiagram,
   Blueprint,
-  BrandingDiagram,
   MetaAdsDiagram,
   ReceptionistDiagram,
   WebsiteDiagram,
@@ -220,16 +218,6 @@ export function ServiceVisual({ slug, className = "" }: { slug: string; classNam
         ]}
       />
     );
-  if (slug === "branding")
-    d = (
-      <BrandingDiagram
-        labels={[
-          t("Logo construction", "Ndërtimi i logos"),
-          t("Brand colours", "Ngjyrat e brendit"),
-          t("Typeface", "Fonti"),
-        ]}
-      />
-    );
   if (slug === "ai-receptionist")
     d = (
       <ReceptionistDiagram
@@ -256,6 +244,10 @@ export function Hero() {
     e.preventDefault();
     smoothScrollTo("services");
   };
+  const goReceptionist = (e: MouseEvent) => {
+    e.preventDefault();
+    smoothScrollTo("receptionist");
+  };
   const promises = [
     t("One team for ads, design, web and AI", "Një ekip për reklama, dizajn, ueb dhe AI"),
     t("Nothing goes live without your approval", "Asgjë nuk publikohet pa miratimin tuaj"),
@@ -272,23 +264,36 @@ export function Hero() {
       />
       <div className={`${WRAP} relative pt-12 pb-16 md:pt-20 md:pb-24`}>
         <div className="flex flex-wrap items-center justify-between gap-4 fade-up">
-          <Eyebrow light>{t("Digital marketing agency", "Agjenci e marketingut digjital")}</Eyebrow>
-          <span className="inline-flex items-center gap-2 text-[13px] text-white/60">
-            <span className="relative flex size-2">
-              <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-60" />
-              <span className="relative size-2 rounded-full bg-[#25D366]" />
+          <a
+            href="#receptionist"
+            onClick={goReceptionist}
+            className="group inline-flex items-center gap-3 h-11 pl-1.5 pr-4 rounded-full bg-white/[0.07] border border-white/15 hover:bg-white/[0.12] transition-colors"
+          >
+            <span className="inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-primary text-[12px] font-semibold uppercase tracking-[0.08em] whitespace-nowrap">
+              <span className="relative flex size-2" aria-hidden>
+                <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-70" />
+                <span className="relative size-2 rounded-full bg-[#25D366]" />
+              </span>
+              {t("AI Receptionist", "Recepsionisti AI")}
             </span>
-            {t(
-              "Kosovo · Europe — working fully online",
-              "Kosovë · Evropë — punojmë tërësisht online",
-            )}
+            <span className="text-[14px] text-white/85 whitespace-nowrap">
+              <span className="sm:hidden">{t("Live 24/7", "Aktiv 24/7")}</span>
+              <span className="hidden sm:inline">
+                {t("Answers your clients 24/7", "U përgjigjet klientëve tuaj 24/7")}
+              </span>
+            </span>
+            <ArrowRight className="size-4 text-white/60 transition-transform group-hover:translate-x-0.5" />
+          </a>
+          <span className="inline-flex items-center gap-2 text-[13px] text-white/60">
+            {t("Digital marketing agency", "Agjenci e marketingut digjital")} ·{" "}
+            {t("Kosovo & Europe", "Kosovë & Evropë")}
           </span>
         </div>
 
         <h1 className="mt-8 md:mt-10 text-[2.9rem] sm:text-[4.25rem] lg:text-[5.5rem] xl:text-[6.4rem] leading-[0.95] tracking-[-0.035em] max-w-[13ch] fade-up [animation-delay:60ms]">
           {lang === "sq" ? (
             <>
-              Reklama, dizajn & uebsajte që ju sjellin{" "}
+              Reklama, dizajn & websites që ju sjellin{" "}
               <Em className="text-[#8FA8D8]">klientë realë.</Em>
             </>
           ) : (
@@ -303,8 +308,8 @@ export function Hero() {
           <div className="lg:col-span-4 fade-up [animation-delay:120ms]">
             <p className="text-lg text-white/75 leading-relaxed">
               {t(
-                "Meta ads, social media design, websites, branding and an AI receptionist. For businesses in Kosovo and across Europe that want more messages, bookings and sales.",
-                "Reklama në Meta, dizajn për rrjete sociale, uebsajte, brendim dhe recepsionist me AI. Për biznese në Kosovë dhe Evropë që duan më shumë mesazhe, rezervime dhe shitje.",
+                "An AI receptionist that answers your clients 24/7, plus Meta ads, social media design and websites. For businesses in Kosovo and across Europe that want more messages, bookings and sales.",
+                "Recepsionist me AI që u përgjigjet klientëve tuaj 24/7, plus reklama në Meta, dizajn për rrjete sociale dhe websites. Për biznese në Kosovë dhe Evropë që duan më shumë mesazhe, rezervime dhe shitje.",
               )}
             </p>
             <div className="mt-8 flex flex-col sm:flex-row sm:flex-wrap lg:flex-col xl:flex-row gap-3">
@@ -379,13 +384,18 @@ export function Hero() {
                   ))}
                 </div>
               </div>
-              <div className="relative rounded-[28px] bg-primary p-5 sm:p-6 flex flex-col justify-between min-h-[200px] overflow-hidden">
+              <a
+                href="#receptionist"
+                onClick={goReceptionist}
+                className="group relative rounded-[28px] bg-primary p-5 sm:p-6 flex flex-col justify-between min-h-[200px] overflow-hidden ring-1 ring-white/10 hover:bg-[#0F4789] transition-colors"
+              >
                 <BrandCircles
                   className="absolute -right-10 -bottom-12 w-44 text-white"
                   opacity={0.1}
                 />
-                <span className="relative text-[11px] font-semibold uppercase tracking-[0.16em] text-white/70">
+                <span className="relative flex items-center justify-between gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-white/70">
                   {t("AI Receptionist", "Recepsionist AI")}
+                  <ArrowUpRight className="size-4 text-white transition-transform group-hover:rotate-45" />
                 </span>
                 <div className="relative">
                   <div className="text-5xl sm:text-6xl font-semibold tracking-[-0.04em]">24/7</div>
@@ -395,8 +405,12 @@ export function Hero() {
                       "U përgjigjet klientëve, edhe në 3 të natës.",
                     )}
                   </p>
+                  <span className="mt-3 inline-flex items-center gap-1.5 text-[13px] font-semibold text-white">
+                    {t("See how it works", "Shiko si funksionon")}{" "}
+                    <ArrowRight className="size-3.5" />
+                  </span>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
         </div>
@@ -502,7 +516,7 @@ export function About() {
     ),
   };
   const facts = [
-    { v: "5", l: t("services under one roof", "shërbime nën një çati") },
+    { v: "4", l: t("services under one roof", "shërbime nën një çati") },
     { v: "24/7", l: t("AI replies to your clients", "përgjigje me AI për klientët") },
     { v: "< 10s", l: t("average AI reply time", "kohë mesatare përgjigjeje") },
     { v: "0", l: t("posts published without your OK", "postime pa miratimin tuaj") },
@@ -518,7 +532,7 @@ export function About() {
                 Jemi një ekip marketingu nga Kosova {pills.team} që i ndihmon bizneset të fitojnë
                 klientë online,{" "}
                 <span className="text-[#8A93A3]">
-                  me reklama {pills.ads} dizajn {pills.design} dhe uebsajte {pills.web} që
+                  me reklama {pills.ads} dizajn {pills.design} dhe websites {pills.web} që
                 </span>{" "}
                 <Em className="text-primary">funksionojnë vërtet.</Em>
               </>
@@ -624,11 +638,11 @@ export function ServicesSection() {
             title={
               lang === "sq" ? (
                 <>
-                  Pesë shërbime. <Em className="text-primary">Një ekip.</Em>
+                  Katër shërbime. <Em className="text-primary">Një ekip.</Em>
                 </>
               ) : (
                 <>
-                  Five services. <Em className="text-primary">One team.</Em>
+                  Four services. <Em className="text-primary">One team.</Em>
                 </>
               )
             }
@@ -690,7 +704,7 @@ export function Industries() {
       n: t("Clinics & dentists", "Klinika & dentistë"),
       d: t(
         "Ads that build trust and a clean, fast website.",
-        "Reklama që ndërtojnë besim dhe uebsajt i pastër e i shpejtë.",
+        "Reklama që ndërtojnë besim dhe website i pastër e i shpejtë.",
       ),
     },
     {
@@ -882,7 +896,10 @@ export function ReceptionistSection() {
       <div className={`${WRAP} grid lg:grid-cols-12 gap-14 lg:gap-10 items-center`}>
         <div className="lg:col-span-6">
           <SectionHead
-            label={t("AI Receptionist", "Recepsionist me AI")}
+            label={t(
+              "Our main service · AI Receptionist",
+              "Shërbimi ynë kryesor · Recepsionist me AI",
+            )}
             title={
               lang === "sq" ? (
                 <>
@@ -1080,130 +1097,6 @@ export function Process() {
   );
 }
 
-/* ------------------------------------------------------------------ FAQ */
-
-export function FAQ() {
-  const { t, lang } = useSite();
-  const items: { q: string; a: ReactNode }[] = [
-    {
-      q: t("How much does it cost?", "Sa kushton?"),
-      a: t(
-        "It depends on the work. Ads management and the AI receptionist have a monthly fee, designs are priced per piece, and websites and branding have a one-off price. Message us and we'll send a clear offer.",
-        "Varet nga puna. Menaxhimi i reklamave dhe recepsionisti me AI kanë pagesë mujore, dizajnet paguhen për copë, ndërsa uebsajtet dhe brendimi kanë çmim të njëhershëm. Na shkruani dhe ju dërgojmë një ofertë të qartë.",
-      ),
-    },
-    {
-      q: t("Which businesses do you work with?", "Me cilat biznese punoni?"),
-      a: t(
-        "Every kind: restaurants, shops, salons, clinics, gyms, real estate, tourism, service companies and more.",
-        "Me të gjitha llojet: restorante, dyqane, sallone, klinika, palestra, patundshmëri, turizëm, kompani shërbimesh e më shumë.",
-      ),
-    },
-    {
-      q: t("Do you work outside Kosovo?", "A punoni jashtë Kosovës?"),
-      a: t(
-        "Yes. We work with businesses in Kosovo and across Europe, fully online.",
-        "Po. Punojmë me biznese në Kosovë dhe në gjithë Evropën, tërësisht online.",
-      ),
-    },
-    {
-      q: t("Who pays for the ads?", "Kush i paguan reklamat?"),
-      a: t(
-        "You do, directly to Meta, on your own card. Our fee is only for managing the ads, so you always see exactly what was spent.",
-        "Ju, direkt te Meta, me kartën tuaj. Pagesa jonë është vetëm për menaxhimin, kështu që gjithmonë e shihni saktë sa është shpenzuar.",
-      ),
-    },
-    {
-      q: t("Do I need technical knowledge?", "A më duhen njohuri teknike?"),
-      a: t(
-        "No. We handle everything and explain it in plain words.",
-        "Jo. Ne merremi me gjithçka dhe jua shpjegojmë thjesht.",
-      ),
-    },
-    {
-      q: t("Can I try the AI receptionist?", "A mund ta provoj recepsionistin me AI?"),
-      a: (
-        <>
-          {t("Yes. ", "Po. ")}
-          <Link to="/assistant" className="text-primary font-medium underline underline-offset-4">
-            {t("Try the live demo", "Provoni demon live")}
-          </Link>
-          {t(
-            ", or message us for a free 15-minute walkthrough.",
-            ", ose na shkruani për një prezantim falas 15-minutësh.",
-          )}
-        </>
-      ),
-    },
-  ];
-  return (
-    <section id="faq" className="scroll-mt-20 py-24 md:py-36 bg-surface">
-      <div className={`${WRAP} grid lg:grid-cols-12 gap-12 lg:gap-10`}>
-        <div className="lg:col-span-4">
-          <SectionHead
-            label="FAQ"
-            title={
-              lang === "sq" ? (
-                <>
-                  Pyetje të <Em className="text-primary">shpeshta.</Em>
-                </>
-              ) : (
-                <>
-                  Common <Em className="text-primary">questions.</Em>
-                </>
-              )
-            }
-          />
-          <Reveal
-            delay={60}
-            className="mt-10 rounded-[22px] bg-navy text-white p-7 relative overflow-hidden"
-          >
-            <BrandCircles
-              className="absolute -right-12 -bottom-16 w-52 text-white"
-              opacity={0.08}
-            />
-            <p className="relative text-xl font-semibold tracking-[-0.02em] leading-snug">
-              {t(
-                "Still have a question? Ask us directly. We reply fast.",
-                "Keni ende pyetje? Na pyesni direkt. Përgjigjemi shpejt.",
-              )}
-            </p>
-            <div className="relative mt-6">
-              <WhatsAppButton
-                className={BTN_LIGHT}
-                label={t("Ask on WhatsApp", "Pyet në WhatsApp")}
-              />
-            </div>
-          </Reveal>
-        </div>
-        <Reveal className="lg:col-span-7 lg:col-start-6" delay={80}>
-          <div className="space-y-3">
-            {items.map((it, i) => (
-              <details
-                key={it.q}
-                className="group rounded-[20px] bg-card border border-border px-6 md:px-7 open:border-border-strong transition-colors [&_summary::-webkit-details-marker]:hidden"
-              >
-                <summary className="flex items-center gap-5 py-6 cursor-pointer list-none text-lg sm:text-xl font-medium tracking-[-0.01em]">
-                  <span className="text-[13px] font-medium text-muted-foreground tabular-nums">
-                    {pad(i + 1)}
-                  </span>
-                  <span className="flex-1">{it.q}</span>
-                  <span className="grid place-items-center size-9 shrink-0 rounded-full bg-surface text-primary transition-all duration-300 group-open:rotate-45 group-open:bg-primary group-open:text-white">
-                    <Plus className="size-4" />
-                  </span>
-                </summary>
-                <p className="pb-6 -mt-1 pl-10 pr-4 text-muted-foreground leading-relaxed max-w-2xl">
-                  {it.a}
-                </p>
-              </details>
-            ))}
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
 /* ------------------------------------------------------------------ Contact + footer (navy) */
 
 export function CTA(_props: { index?: string | null }) {
@@ -1226,10 +1119,10 @@ export function CTA(_props: { index?: string | null }) {
       <div className={`${WRAP} relative grid lg:grid-cols-12 gap-14`}>
         <Reveal className="lg:col-span-7">
           <Eyebrow light>{t("Contact", "Kontakti")}</Eyebrow>
-          <h2 className="mt-6 text-[3.25rem] sm:text-[4.5rem] md:text-[6rem] leading-[0.92] tracking-[-0.035em]">
+          <h2 className="mt-6 text-[3.25rem] sm:text-[4.5rem] md:text-[6rem] leading-[0.92] tracking-[-0.025em]">
             {lang === "sq" ? (
               <>
-                Le ta rritim <Em className="text-[#8FA8D8]">biznesin tuaj.</Em>
+                Le ta rrisim <Em className="text-[#8FA8D8]">biznesin tuaj.</Em>
               </>
             ) : (
               <>
@@ -1330,11 +1223,6 @@ export function Footer() {
               <li>
                 <a href="/#process" className="text-white/75 hover:text-white transition-colors">
                   {t("Process", "Procesi")}
-                </a>
-              </li>
-              <li>
-                <a href="/#faq" className="text-white/75 hover:text-white transition-colors">
-                  FAQ
                 </a>
               </li>
             </ul>

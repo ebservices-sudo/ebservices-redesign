@@ -8,7 +8,6 @@ import {
   Industries,
   ReceptionistSection,
   Process,
-  FAQ,
   CTA,
   Footer,
 } from "@/components/site/Sections";
@@ -21,7 +20,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Meta ads, ad design, websites, branding and an AI receptionist for businesses in Kosovo and across Europe.",
+          "An AI receptionist that answers your clients 24/7, plus Meta ads, ad design and websites for businesses in Kosovo and across Europe.",
       },
     ],
     links: [
@@ -39,13 +38,12 @@ function Index() {
       <main>
         <Hero />
         <Marquee />
+        <ReceptionistSection />
         <About />
         <ServicesSection />
         <Industries />
-        <ReceptionistSection />
         <AdSimulator />
         <Process />
-        <FAQ />
         <CTA />
       </main>
       <Footer />

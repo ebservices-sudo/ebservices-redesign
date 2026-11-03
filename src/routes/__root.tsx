@@ -1,12 +1,13 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { SiteProvider } from "@/components/site/SiteProvider";
 import { StickyWhatsApp } from "@/components/site/WhatsApp";
+import { FloatingAI } from "@/components/site/FloatingAI";
 
 import appCss from "../styles.css?url";
 
 const TITLE = "EB Services — Digital Marketing Agency in Kosovo";
 const DESCRIPTION =
-  "Meta ads, ad design, websites, branding and an AI receptionist for businesses in Kosovo and across Europe.";
+  "An AI receptionist that answers your clients 24/7, plus Meta ads, ad design and websites for businesses in Kosovo and across Europe.";
 
 // Runs before first paint: applies the saved/system theme (no flash) and marks JS as available
 // so scroll-reveal content is only hidden when it can actually be revealed.
@@ -93,6 +94,7 @@ function RootComponent() {
     <SiteProvider>
       <Outlet />
       <StickyWhatsApp />
+      <FloatingAI />
     </SiteProvider>
   );
 }

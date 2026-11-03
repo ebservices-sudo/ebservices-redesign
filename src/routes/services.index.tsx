@@ -13,9 +13,9 @@ import {
 import { Reveal } from "@/components/site/Reveal";
 import { useSite } from "@/components/site/SiteProvider";
 
-const TITLE = "Services — Meta Ads, Ad Design, Websites, Branding & AI Receptionist | EB Services";
+const TITLE = "Services — AI Receptionist, Meta Ads, Ad Design & Websites | EB Services";
 const DESCRIPTION =
-  "Meta ads, ad design and social posts, websites, branding and logos, and an AI receptionist for businesses in Kosovo and across Europe.";
+  "An AI receptionist for WhatsApp, Instagram and Messenger, Meta ads, ad design and social posts, and websites for businesses in Kosovo and across Europe.";
 
 export const Route = createFileRoute("/services/")({
   head: () => ({
@@ -46,11 +46,11 @@ function ServicesIndex() {
             <h1 className="mt-8 text-[2.9rem] sm:text-[4.25rem] lg:text-[5.5rem] leading-[0.95] tracking-[-0.035em] max-w-[14ch]">
               {lang === "sq" ? (
                 <>
-                  Pesë shërbime. <Em className="text-[#8FA8D8]">Një ekip.</Em>
+                  Katër shërbime. <Em className="text-[#8FA8D8]">Një ekip.</Em>
                 </>
               ) : (
                 <>
-                  Five services. <Em className="text-[#8FA8D8]">One team.</Em>
+                  Four services. <Em className="text-[#8FA8D8]">One team.</Em>
                 </>
               )}
             </h1>

@@ -12,7 +12,7 @@ export type Service = {
   metaDescription: string;
 };
 
-export const services: Service[] = [
+const serviceList: Service[] = [
   {
     slug: "meta-ads-management",
     name: { en: "Meta Ads", sq: "Reklama në Meta" },
@@ -31,18 +31,55 @@ export const services: Service[] = [
       },
     ],
     blocks: [
-      { t: { en: "Strategy", sq: "Strategji" }, d: { en: "What to advertise, to whom, and what result we aim for.", sq: "Çfarë reklamojmë, për kë dhe çfarë rezultati synojmë." } },
-      { t: { en: "Campaign setup", sq: "Ndërtimi i fushatave" }, d: { en: "We build and launch your campaigns.", sq: "I ndërtojmë dhe i lansojmë fushatat tuaja." } },
-      { t: { en: "Audiences", sq: "Audiencat" }, d: { en: "Your ads reach the people most likely to buy.", sq: "Reklamat arrijnë te njerëzit që ka më shumë gjasa të blejnë." } },
-      { t: { en: "Weekly optimisation", sq: "Optimizim javor" }, d: { en: "We check the numbers every week and adjust.", sq: "I kontrollojmë numrat çdo javë dhe bëjmë ndryshime." } },
-      { t: { en: "Monthly report", sq: "Raport mujor" }, d: { en: "What ran, what it cost and what it brought, in plain words.", sq: "Çfarë u publikua, sa kushtoi dhe çfarë solli, me fjalë të thjeshta." } },
+      {
+        t: { en: "Strategy", sq: "Strategji" },
+        d: {
+          en: "What to advertise, to whom, and what result we aim for.",
+          sq: "Çfarë reklamojmë, për kë dhe çfarë rezultati synojmë.",
+        },
+      },
+      {
+        t: { en: "Campaign setup", sq: "Ndërtimi i fushatave" },
+        d: {
+          en: "We build and launch your campaigns.",
+          sq: "I ndërtojmë dhe i lansojmë fushatat tuaja.",
+        },
+      },
+      {
+        t: { en: "Audiences", sq: "Audiencat" },
+        d: {
+          en: "Your ads reach the people most likely to buy.",
+          sq: "Reklamat arrijnë te njerëzit që ka më shumë gjasa të blejnë.",
+        },
+      },
+      {
+        t: { en: "Weekly optimisation", sq: "Optimizim javor" },
+        d: {
+          en: "We check the numbers every week and adjust.",
+          sq: "I kontrollojmë numrat çdo javë dhe bëjmë ndryshime.",
+        },
+      },
+      {
+        t: { en: "Monthly report", sq: "Raport mujor" },
+        d: {
+          en: "What ran, what it cost and what it brought, in plain words.",
+          sq: "Çfarë u publikua, sa kushtoi dhe çfarë solli, me fjalë të thjeshta.",
+        },
+      },
     ],
-    pricing: { en: "Monthly fee for management. Message us for an offer.", sq: "Pagesë mujore për menaxhimin. Na shkruani për ofertë." },
+    pricing: {
+      en: "Monthly fee for management. Message us for an offer.",
+      sq: "Pagesë mujore për menaxhimin. Na shkruani për ofertë.",
+    },
     notes: [
-      { en: "Nothing goes live without your approval.", sq: "Asgjë nuk publikohet pa miratimin tuaj." },
+      {
+        en: "Nothing goes live without your approval.",
+        sq: "Asgjë nuk publikohet pa miratimin tuaj.",
+      },
     ],
     metaTitle: "Meta Ads Management (Facebook & Instagram) | EB Services",
-    metaDescription: "Facebook and Instagram ads managed by EB Services: strategy, setup, audiences, weekly optimisation and a monthly report.",
+    metaDescription:
+      "Facebook and Instagram ads managed by EB Services: strategy, setup, audiences, weekly optimisation and a monthly report.",
   },
   {
     slug: "ad-designs",
@@ -62,27 +99,60 @@ export const services: Service[] = [
       },
     ],
     blocks: [
-      { t: { en: "Feed posts (4:5)", sq: "Postime për feed (4:5)" }, d: { en: "Sized for Facebook and Instagram feeds.", sq: "Në madhësi për feed në Facebook dhe Instagram." } },
-      { t: { en: "Stories & reels (9:16)", sq: "Story & reels (9:16)" }, d: { en: "Full-screen designs for stories and reels.", sq: "Dizajne në ekran të plotë për story dhe reels." } },
-      { t: { en: "Carousels", sq: "Karusele" }, d: { en: "Several slides to show more in one post.", sq: "Disa faqe për të treguar më shumë në një postim." } },
-      { t: { en: "Your brand style", sq: "Stili i brendit tuaj" }, d: { en: "Your colours and fonts in every design.", sq: "Ngjyrat dhe fontet tuaja në çdo dizajn." } },
+      {
+        t: { en: "Feed posts (4:5)", sq: "Postime për feed (4:5)" },
+        d: {
+          en: "Sized for Facebook and Instagram feeds.",
+          sq: "Në madhësi për feed në Facebook dhe Instagram.",
+        },
+      },
+      {
+        t: { en: "Stories & reels (9:16)", sq: "Story & reels (9:16)" },
+        d: {
+          en: "Full-screen designs for stories and reels.",
+          sq: "Dizajne në ekran të plotë për story dhe reels.",
+        },
+      },
+      {
+        t: { en: "Carousels", sq: "Karusele" },
+        d: {
+          en: "Several slides to show more in one post.",
+          sq: "Disa faqe për të treguar më shumë në një postim.",
+        },
+      },
+      {
+        t: { en: "Your brand style", sq: "Stili i brendit tuaj" },
+        d: {
+          en: "Your colours and fonts in every design.",
+          sq: "Ngjyrat dhe fontet tuaja në çdo dizajn.",
+        },
+      },
     ],
-    pricing: { en: "Priced per design. Message us for an offer.", sq: "Çmimi për çdo dizajn. Na shkruani për ofertë." },
-    notes: [{ en: "Nothing is published without your approval.", sq: "Asgjë nuk publikohet pa miratimin tuaj." }],
+    pricing: {
+      en: "Priced per design. Message us for an offer.",
+      sq: "Çmimi për çdo dizajn. Na shkruani për ofertë.",
+    },
+    notes: [
+      {
+        en: "Nothing is published without your approval.",
+        sq: "Asgjë nuk publikohet pa miratimin tuaj.",
+      },
+    ],
     metaTitle: "Ad Design & Social Media Posts | EB Services",
-    metaDescription: "Posts, stories and carousels in your brand colours and fonts, sized 4:5 for feeds and 9:16 for stories and reels.",
+    metaDescription:
+      "Posts, stories and carousels in your brand colours and fonts, sized 4:5 for feeds and 9:16 for stories and reels.",
   },
   {
     slug: "websites",
-    name: { en: "Websites", sq: "Uebsajte" },
+    name: { en: "Websites", sq: "Websites" },
     short: {
       en: "Fast, mobile-ready websites with WhatsApp and contact buttons, so visitors reach you in one tap.",
-      sq: "Uebsajte të shpejta dhe të përshtatura për telefon, me butona për WhatsApp dhe kontakt, që klientët t'ju gjejnë me një prekje.",
+      sq: "Websites të shpejta dhe të përshtatura për telefon, me butona për WhatsApp dhe kontakt, që klientët t'ju gjejnë me një prekje.",
     },
     intro: [
       {
         en: "We design and build your website from start to finish. It works well on phones, where most of your visitors are.",
-        sq: "E dizajnojmë dhe e ndërtojmë uebsajtin tuaj nga fillimi deri në fund. Funksionon mirë në telefon, ku janë shumica e vizitorëve tuaj.",
+        sq: "E dizajnojmë dhe e ndërtojmë website-in tuaj nga fillimi deri në fund. Funksionon mirë në telefon, ku janë shumica e vizitorëve tuaj.",
       },
       {
         en: "WhatsApp and contact buttons are built in, so a visitor can message or call you in one tap.",
@@ -90,43 +160,48 @@ export const services: Service[] = [
       },
     ],
     blocks: [
-      { t: { en: "Design", sq: "Dizajn" }, d: { en: "A clean design that fits your business.", sq: "Dizajn i pastër që i përshtatet biznesit tuaj." } },
-      { t: { en: "Build and launch", sq: "Ndërtim dhe publikim" }, d: { en: "We build it and put it online. No technical knowledge needed.", sq: "E ndërtojmë dhe e publikojmë. Nuk ju duhen njohuri teknike." } },
-      { t: { en: "Mobile-ready", sq: "Gati për telefon" }, d: { en: "Looks right on phones, tablets and computers.", sq: "Duket mirë në telefon, tablet dhe kompjuter." } },
-      { t: { en: "WhatsApp & contact buttons", sq: "Butona për WhatsApp & kontakt" }, d: { en: "One tap to message or call you.", sq: "Një prekje për t'ju shkruar ose telefonuar." } },
+      {
+        t: { en: "Design", sq: "Dizajn" },
+        d: {
+          en: "A clean design that fits your business.",
+          sq: "Dizajn i pastër që i përshtatet biznesit tuaj.",
+        },
+      },
+      {
+        t: { en: "Build and launch", sq: "Ndërtim dhe publikim" },
+        d: {
+          en: "We build it and put it online. No technical knowledge needed.",
+          sq: "E ndërtojmë dhe e publikojmë. Nuk ju duhen njohuri teknike.",
+        },
+      },
+      {
+        t: { en: "Mobile-ready", sq: "Gati për telefon" },
+        d: {
+          en: "Looks right on phones, tablets and computers.",
+          sq: "Duket mirë në telefon, tablet dhe kompjuter.",
+        },
+      },
+      {
+        t: { en: "WhatsApp & contact buttons", sq: "Butona për WhatsApp & kontakt" },
+        d: {
+          en: "One tap to message or call you.",
+          sq: "Një prekje për t'ju shkruar ose telefonuar.",
+        },
+      },
     ],
-    pricing: { en: "One-off price. Domain and hosting are a yearly extra. Message us for an offer.", sq: "Çmim i njëhershëm. Domeni dhe hostingu paguhen veçmas çdo vit. Na shkruani për ofertë." },
-    notes: [{ en: "Nothing goes live without your approval.", sq: "Asgjë nuk publikohet pa miratimin tuaj." }],
-    metaTitle: "Website Design & Build | EB Services",
-    metaDescription: "Fast, mobile-ready websites with WhatsApp and contact buttons, designed and built by EB Services.",
-  },
-  {
-    slug: "branding",
-    name: { en: "Branding & Logos", sq: "Brendim & logo" },
-    short: {
-      en: "Logo, colours, fonts, a simple brand guide and business cards. One clear look, everywhere.",
-      sq: "Logo, ngjyra, fonte, një udhëzues i thjeshtë brendi dhe kartëvizita. Një pamje e qartë, kudo.",
+    pricing: {
+      en: "One-off price. Domain and hosting are a yearly extra. Message us for an offer.",
+      sq: "Çmim i njëhershëm. Domeni dhe hostingu paguhen veçmas çdo vit. Na shkruani për ofertë.",
     },
-    intro: [
+    notes: [
       {
-        en: "We create the look of your business: a logo, the colours and fonts that go with it, and a simple guide so everything stays consistent.",
-        sq: "Krijojmë pamjen e biznesit tuaj: logon, ngjyrat dhe fontet që shkojnë me të, dhe një udhëzues të thjeshtë që gjithçka të mbetet e njëtrajtshme.",
-      },
-      {
-        en: "We also design your business cards, so your brand looks the same online and offline.",
-        sq: "Dizajnojmë edhe kartëvizitat, që brendi juaj të duket njësoj online dhe jashtë tij.",
+        en: "Nothing goes live without your approval.",
+        sq: "Asgjë nuk publikohet pa miratimin tuaj.",
       },
     ],
-    blocks: [
-      { t: { en: "Logo", sq: "Logo" }, d: { en: "A logo made for your business.", sq: "Një logo e krijuar për biznesin tuaj." } },
-      { t: { en: "Colours & fonts", sq: "Ngjyra & fonte" }, d: { en: "A set of brand colours and fonts.", sq: "Një set ngjyrash dhe fontesh për brendin." } },
-      { t: { en: "Brand guide", sq: "Udhëzues brendi" }, d: { en: "How to use your logo, colours and fonts.", sq: "Si të përdoren logo, ngjyrat dhe fontet." } },
-      { t: { en: "Business cards", sq: "Kartëvizita" }, d: { en: "Designed in your new brand style.", sq: "Të dizajnuara me stilin e ri të brendit." } },
-    ],
-    pricing: { en: "One-off price. Message us for an offer.", sq: "Çmim i njëhershëm. Na shkruani për ofertë." },
-    notes: [{ en: "You approve every step before we finish.", sq: "Ju e miratoni çdo hap para se të përfundojmë." }],
-    metaTitle: "Branding & Logo Design | EB Services",
-    metaDescription: "Logo, colours, fonts, a simple brand guide and business cards, designed by EB Services.",
+    metaTitle: "Website Design & Build | EB Services",
+    metaDescription:
+      "Fast, mobile-ready websites with WhatsApp and contact buttons, designed and built by EB Services.",
   },
   {
     slug: "ai-receptionist",
@@ -146,21 +221,62 @@ export const services: Service[] = [
       },
     ],
     blocks: [
-      { t: { en: "Answers 24/7", sq: "Përgjigjet 24/7" }, d: { en: "Day, night and weekends, on WhatsApp, Instagram and Messenger.", sq: "Ditë, natë dhe fundjavë, në WhatsApp, Instagram dhe Messenger." } },
-      { t: { en: "Prices and hours", sq: "Çmime dhe orare" }, d: { en: "Answers the questions your clients ask most.", sq: "U përgjigjet pyetjeve që klientët bëjnë më shpesh." } },
-      { t: { en: "Bookings", sq: "Rezervime" }, d: { en: "Books appointments straight from the chat.", sq: "Rezervon takime direkt nga biseda." } },
-      { t: { en: "Hand-off to you", sq: "Kalim te ju" }, d: { en: "Complex questions go to you or your team.", sq: "Pyetjet e ndërlikuara vijnë te ju ose ekipi juaj." } },
+      {
+        t: { en: "Answers 24/7", sq: "Përgjigjet 24/7" },
+        d: {
+          en: "Day, night and weekends, on WhatsApp, Instagram and Messenger.",
+          sq: "Ditë, natë dhe fundjavë, në WhatsApp, Instagram dhe Messenger.",
+        },
+      },
+      {
+        t: { en: "Prices and hours", sq: "Çmime dhe orare" },
+        d: {
+          en: "Answers the questions your clients ask most.",
+          sq: "U përgjigjet pyetjeve që klientët bëjnë më shpesh.",
+        },
+      },
+      {
+        t: { en: "Bookings", sq: "Rezervime" },
+        d: {
+          en: "Books appointments straight from the chat.",
+          sq: "Rezervon takime direkt nga biseda.",
+        },
+      },
+      {
+        t: { en: "Hand-off to you", sq: "Kalim te ju" },
+        d: {
+          en: "Complex questions go to you or your team.",
+          sq: "Pyetjet e ndërlikuara vijnë te ju ose ekipi juaj.",
+        },
+      },
     ],
-    pricing: { en: "Monthly fee. Message us for an offer.", sq: "Pagesë mujore. Na shkruani për ofertë." },
-    notes: [{ en: "Try it first: free 15-minute demo.", sq: "Provojeni fillimisht: demo falas 15-minutëshe." }],
+    pricing: {
+      en: "Monthly fee. Message us for an offer.",
+      sq: "Pagesë mujore. Na shkruani për ofertë.",
+    },
+    notes: [
+      {
+        en: "Try it first: free 15-minute demo.",
+        sq: "Provojeni fillimisht: demo falas 15-minutëshe.",
+      },
+    ],
     metaTitle: "AI Receptionist for WhatsApp, Instagram & Messenger | EB Services",
-    metaDescription: "A chatbot that answers your clients on WhatsApp, Instagram and Messenger 24/7 and books appointments. Free 15-minute demo.",
+    metaDescription:
+      "A chatbot that answers your clients on WhatsApp, Instagram and Messenger 24/7 and books appointments. Free 15-minute demo.",
   },
+];
+
+/** The AI receptionist is the main service, so it always comes first (lists, numbering, footer). */
+export const services: Service[] = [
+  ...serviceList.filter((s) => s.slug === "ai-receptionist"),
+  ...serviceList.filter((s) => s.slug !== "ai-receptionist"),
 ];
 
 /** Old URLs, mapped to their closest current page. */
 export const legacySlugs: Record<string, string | undefined> = {
   "whatsapp-chatbot": "ai-receptionist",
+  branding: undefined, // Branding & Logos is no longer offered
+
   "meta-ads-automation": "meta-ads-management",
   "crm-integration": undefined,
   "ai-notifications": undefined,

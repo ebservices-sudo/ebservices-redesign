@@ -3,22 +3,43 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useSite, smoothScrollTo } from "./SiteProvider";
 import ebLogo from "@/assets/eb-logo.png";
-import ebLogoText from "@/assets/eb-logo-text.png";
+import ebWordmark from "@/assets/eb-wordmark.png";
 
-/** The official logo: the circle mark plus the white wordmark cut from the original artwork. For dark backgrounds only. */
+/**
+ * The official logo: the circle mark, the white "EB Services" wordmark from the original artwork,
+ * and "Digital Growth Solutions" set in Bricolage Grotesque (the logo typeface) at a readable size.
+ * For dark backgrounds only.
+ */
 export function LogoLockup({ size = "md" }: { size?: "md" | "lg" }) {
-  const mark = size === "lg" ? "h-12" : "h-10";
-  const text = size === "lg" ? "h-[60px]" : "h-12";
+  const lg = size === "lg";
   return (
-    <span className="flex items-center gap-2.5" aria-label="EB Services">
-      <img src={ebLogo} alt="" width={48} height={48} className={`${mark} w-auto object-contain`} />
+    <span className="flex items-center gap-2.5" aria-label="EB Services, Digital Growth Solutions">
       <img
-        src={ebLogoText}
-        alt="EB Services, Digital Growth Solutions"
-        width={684}
-        height={344}
-        className={`${text} w-auto object-contain`}
+        src={ebLogo}
+        alt=""
+        width={48}
+        height={48}
+        className={`${lg ? "h-14" : "h-9 sm:h-10"} w-auto object-contain shrink-0`}
       />
+      <img
+        src={ebWordmark}
+        alt="EB Services"
+        width={523}
+        height={248}
+        className={`${lg ? "h-[50px]" : "h-[30px] sm:h-[34px]"} w-auto object-contain shrink-0`}
+      />
+      <span
+        className={`self-stretch my-1 w-px bg-white/20 shrink-0 ${lg ? "ml-2" : "ml-1"}`}
+        aria-hidden
+      />
+      <span
+        className={`font-semibold uppercase text-white/80 leading-[1.2] tracking-[0.12em] whitespace-nowrap ${lg ? "ml-2 text-[13px]" : "ml-1 text-[9.5px] sm:text-[10.5px]"}`}
+        aria-hidden
+      >
+        Digital Growth
+        <br />
+        Solutions
+      </span>
     </span>
   );
 }
@@ -122,11 +143,10 @@ export function Header() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   const nav = [
+    { id: "receptionist", label: t("AI Receptionist", "Recepsionisti AI"), main: true },
     { id: "services", label: t("Services", "Shërbimet") },
     { id: "industries", label: t("Industries", "Industritë") },
-    { id: "receptionist", label: t("AI Receptionist", "Recepsionisti AI") },
     { id: "process", label: t("Process", "Procesi") },
-    { id: "faq", label: "FAQ" },
   ];
 
   const go = (id: string) => (e: React.MouseEvent) => {
@@ -169,8 +189,18 @@ export function Header() {
               key={n.id}
               href={`/#${n.id}`}
               onClick={go(n.id)}
-              className="px-4 h-9 inline-flex items-center rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+              className={`px-4 h-9 inline-flex items-center gap-2 rounded-full transition-colors ${
+                n.main
+                  ? "bg-primary text-white hover:bg-[#0F4789]"
+                  : "text-white/70 hover:text-white hover:bg-white/10"
+              }`}
             >
+              {n.main && (
+                <span className="relative flex size-2" aria-hidden>
+                  <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-70" />
+                  <span className="relative size-2 rounded-full bg-[#25D366]" />
+                </span>
+              )}
               {n.label}
             </a>
           ))}
@@ -210,8 +240,9 @@ export function Header() {
               key={n.id}
               href={`/#${n.id}`}
               onClick={go(n.id)}
-              className="py-4 border-b border-white/10 text-2xl font-semibold tracking-tight"
+              className={`py-4 border-b border-white/10 text-2xl font-semibold tracking-tight flex items-center gap-3 ${n.main ? "text-[#8FA8D8]" : ""}`}
             >
+              {n.main && <span className="size-2.5 rounded-full bg-[#25D366]" aria-hidden />}
               {n.label}
             </a>
           ))}
