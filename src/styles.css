@@ -2,6 +2,16 @@
 @source "../src";
 @import "tw-animate-css";
 
+/* Official EB Services typeface: Bricolage Grotesque (variable: weight 200–800, width 75–100%, optical size). SIL OFL, see /fonts/BricolageGrotesque-OFL.txt */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/fonts/BricolageGrotesque-Variable.woff2") format("woff2");
+  font-weight: 200 800;
+  font-stretch: 75% 100%;
+  font-style: normal;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -9,10 +19,9 @@
   --radius-md: 3px;
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --font-display: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -212,12 +221,16 @@ html.js .reveal[data-visible="false"] {
   }
 }
 
-/* Serif italic accent inside display headings. */
-@utility accent-serif {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.01em;
+/* Accent word inside display headings: same typeface, light weight. */
+@utility accent-light {
+  font-weight: 300;
+  letter-spacing: -0.035em;
+}
+
+/* "Technical" labels: Bricolage Grotesque condensed instead of a monospace font. */
+.font-mono {
+  font-stretch: 80%;
+  font-weight: 600;
 }
 
 /* Infinite horizontal marquee: the track holds the content twice. */
@@ -259,9 +272,10 @@ html.js .reveal[data-visible="false"] {
   background-position: -1px -1px;
 }
 .bp-label {
-  font-family: var(--font-mono);
-  letter-spacing: 0.12em;
-  font-weight: 500;
+  font-family: var(--font-sans);
+  font-stretch: 80%;
+  letter-spacing: 0.1em;
+  font-weight: 600;
 }
 .bp-flow {
   stroke-dasharray: 4 6;

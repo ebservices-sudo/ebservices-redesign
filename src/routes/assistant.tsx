@@ -162,7 +162,7 @@ function AssistantPage() {
                 <span className="label-eyebrow">Live AI chatbot demo</span>
               </div>
               <h1 className="mt-5 text-[2.75rem] md:text-[4.5rem] leading-[0.98] tracking-[-0.045em]">
-                Try the <span className="accent-serif text-primary">chatbot.</span>
+                Try the <span className="accent-light text-primary">chatbot.</span>
               </h1>
               <p className="mt-5 text-muted-foreground max-w-xl leading-relaxed">
                 This is the AI chatbot we set up for businesses on WhatsApp. You're chatting with{" "}

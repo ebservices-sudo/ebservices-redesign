@@ -18,7 +18,7 @@ function NotFoundComponent() {
       <div className="max-w-md text-center">
         <div className="label-eyebrow">Error 404</div>
         <h1 className="mt-4 text-6xl text-foreground">
-          Page not <span className="accent-serif text-primary">found.</span>
+          Page not <span className="accent-light text-primary">found.</span>
         </h1>
         <p className="mt-4 text-muted-foreground">
           The page you're looking for doesn't exist or has been moved.
@@ -58,11 +58,12 @@ export const Route = createRootRoute({
       { name: "twitter:description", content: DESCRIPTION },
     ],
     links: [
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap",
+        rel: "preload",
+        href: "/fonts/BricolageGrotesque-Variable.woff2",
+        as: "font",
+        type: "font/woff2",
+        crossOrigin: "anonymous",
       },
       { rel: "stylesheet", href: appCss },
     ],

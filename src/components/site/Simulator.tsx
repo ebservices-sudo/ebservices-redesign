@@ -96,11 +96,11 @@ export function AdSimulator() {
           <h2 className="mt-5 text-[2.5rem] sm:text-[3.25rem] md:text-[4rem] leading-[1]">
             {lang === "sq" ? (
               <>
-                Çfarë bën <span className="accent-serif text-[#8FA8D8]">një reklamë.</span>
+                Çfarë bën <span className="accent-light text-[#8FA8D8]">një reklamë.</span>
               </>
             ) : (
               <>
-                What one ad <span className="accent-serif text-[#8FA8D8]">does.</span>
+                What one ad <span className="accent-light text-[#8FA8D8]">does.</span>
               </>
             )}
           </h2>

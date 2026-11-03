@@ -62,7 +62,7 @@ export function Eyebrow({
 
 /** Serif italic accent for a word or two inside a heading. */
 export function Em({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <span className={`accent-serif ${className}`}>{children}</span>;
+  return <span className={`accent-light ${className}`}>{children}</span>;
 }
 
 /** The three overlapping circles of the EB logo, as a large decorative background shape. */

@@ -479,7 +479,7 @@ export function BrandingDiagram({ labels }: { labels: [string, string, string] }
         Aa
       </text>
       <Label x={318} y={298}>
-        {`Inter Tight · ${labels[2]}`}
+        {`Bricolage Grotesque · ${labels[2]}`}
       </Label>
     </>
   );
