@@ -2,5 +2,5 @@
 // Everything else is drawn (blueprint diagrams, platform logos, icons).
 
 export const IMG = {
-  heroStrategy: "/images/hero-strategy.webp",
+  heroStrategy: `${import.meta.env.BASE_URL}images/hero-strategy.webp`,
 } as const;
