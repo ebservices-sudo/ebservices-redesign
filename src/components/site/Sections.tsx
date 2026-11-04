@@ -1221,7 +1221,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="/#process" className="text-white/75 hover:text-white transition-colors">
+                <a href={`${import.meta.env.BASE_URL}#process`} className="text-white/75 hover:text-white transition-colors">
                   {t("Process", "Procesi")}
                 </a>
               </li>

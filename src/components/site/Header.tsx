@@ -187,7 +187,7 @@ export function Header() {
           {nav.map((n) => (
             <a
               key={n.id}
-              href={`/#${n.id}`}
+              href={`${import.meta.env.BASE_URL}#${n.id}`}
               onClick={go(n.id)}
               className={`px-4 h-9 inline-flex items-center gap-2 rounded-full transition-colors ${
                 n.main
@@ -211,7 +211,7 @@ export function Header() {
             <LangSwitch light />
           </div>
           <a
-            href="/#contact"
+            href={`${import.meta.env.BASE_URL}#contact`}
             onClick={go("contact")}
             className="group hidden sm:inline-flex items-center gap-2 h-11 pl-5 pr-1.5 rounded-full bg-white text-navy font-medium text-[14px] hover:bg-[#E6ECF7] transition-colors whitespace-nowrap"
           >
@@ -238,7 +238,7 @@ export function Header() {
           {nav.map((n) => (
             <a
               key={n.id}
-              href={`/#${n.id}`}
+              href={`${import.meta.env.BASE_URL}#${n.id}`}
               onClick={go(n.id)}
               className={`py-4 border-b border-white/10 text-2xl font-semibold tracking-tight flex items-center gap-3 ${n.main ? "text-[#8FA8D8]" : ""}`}
             >
@@ -249,7 +249,7 @@ export function Header() {
           <div className="mt-6 flex items-center justify-between gap-4">
             <LangSwitch light />
             <a
-              href="/#contact"
+              href={`${import.meta.env.BASE_URL}#contact`}
               onClick={go("contact")}
               className="inline-flex items-center h-11 px-6 rounded-full bg-white text-navy font-medium text-sm"
             >
