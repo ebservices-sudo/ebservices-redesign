@@ -17,7 +17,7 @@ export default isGitHubPages
       nitro: false,
       tanstackStart: {
         prerender: { enabled: true, crawlLinks: true, failOnError: false },
-        pages: [{ path: "/" }, { path: "/services" }, { path: "/assistant" }],
+        pages: [{ path: "/" }, { path: "/assistant" }],
         spa: { enabled: true },
       },
       vite: {

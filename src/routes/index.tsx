@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import {
   Hero,
-  Marquee,
   About,
   ServicesSection,
   Industries,
@@ -12,7 +11,6 @@ import {
   Footer,
 } from "@/components/site/Sections";
 import { AdSimulator } from "@/components/site/Simulator";
-import { IMG } from "@/lib/images";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -21,12 +19,11 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "An AI receptionist that answers your clients 24/7, plus Meta ads, ad design and websites for businesses in Kosovo and across Europe.",
+          "An AI receptionist that answers your clients 24/7, plus Meta ads, ad design and websites for businesses that want more clients.",
       },
     ],
     links: [
       { rel: "canonical", href: "https://ebservicesks.com/" },
-      { rel: "preload", as: "image", href: IMG.heroStrategy },
     ],
   }),
   component: Index,
@@ -38,7 +35,6 @@ function Index() {
       <Header />
       <main>
         <Hero />
-        <Marquee />
         <ReceptionistSection />
         <About />
         <ServicesSection />

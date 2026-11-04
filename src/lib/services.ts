@@ -271,22 +271,3 @@ export const services: Service[] = [
   ...serviceList.filter((s) => s.slug === "ai-receptionist"),
   ...serviceList.filter((s) => s.slug !== "ai-receptionist"),
 ];
-
-/** Old URLs, mapped to their closest current page. */
-export const legacySlugs: Record<string, string | undefined> = {
-  "whatsapp-chatbot": "ai-receptionist",
-  branding: undefined, // Branding & Logos is no longer offered
-
-  "meta-ads-automation": "meta-ads-management",
-  "crm-integration": undefined,
-  "ai-notifications": undefined,
-  "appointment-reminders": undefined,
-  "business-automation": undefined,
-  "lead-follow-up": undefined,
-  "review-requests": undefined,
-  "no-show-reduction": undefined,
-};
-
-export function getService(slug: string) {
-  return services.find((s) => s.slug === slug);
-}

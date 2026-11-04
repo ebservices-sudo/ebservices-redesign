@@ -3,7 +3,6 @@ import {
   ArrowRight,
   ArrowUpRight,
   Building2,
-  Check,
   Coffee,
   Dumbbell,
   Globe,
@@ -20,7 +19,8 @@ import { Reveal } from "./Reveal";
 import { WhatsAppIcon } from "./WhatsApp";
 import { HomeLink, LogoLockup } from "./Header";
 import { useSite, smoothScrollTo } from "./SiteProvider";
-import { BrandLogo, type BrandKey } from "./Brands";
+import { BrandLogo } from "./Brands";
+import { HeroFlow } from "./HeroFlow";
 import {
   AdDesignDiagram,
   Blueprint,
@@ -29,7 +29,6 @@ import {
   WebsiteDiagram,
 } from "./Blueprints";
 import { services } from "@/lib/services";
-import { IMG } from "@/lib/images";
 import { EMAIL, PHONE, MESSAGES, SOCIAL, waLink } from "@/lib/site";
 import ebLogo from "@/assets/eb-logo.png";
 
@@ -77,28 +76,6 @@ export function BrandCircles({
       <circle cx="162" cy="334" r="140" fill="currentColor" fillOpacity={opacity} />
       <circle cx="350" cy="334" r="140" fill="currentColor" fillOpacity={opacity} />
     </svg>
-  );
-}
-
-function Photo({
-  src,
-  alt,
-  className = "",
-  eager = false,
-}: {
-  src: string;
-  alt: string;
-  className?: string;
-  eager?: boolean;
-}) {
-  return (
-    <img
-      src={src}
-      alt={alt}
-      loading={eager ? "eager" : "lazy"}
-      decoding="async"
-      className={`absolute inset-0 size-full object-cover img-zoom ${className}`}
-    />
   );
 }
 
@@ -248,26 +225,20 @@ export function Hero() {
     e.preventDefault();
     smoothScrollTo("receptionist");
   };
-  const promises = [
-    t("One team for ads, design, web and AI", "Një ekip për reklama, dizajn, ueb dhe AI"),
-    t("Nothing goes live without your approval", "Asgjë nuk publikohet pa miratimin tuaj"),
-    t(
-      "A clear report every month, in plain words",
-      "Raport i qartë çdo muaj, me fjalë të thjeshta",
-    ),
-  ];
   return (
     <section id="top" className="relative bg-navy text-white overflow-hidden">
       <BrandCircles
         className="absolute -right-40 -top-24 w-[720px] text-[#8FA8D8] hidden md:block"
-        opacity={0.06}
+        opacity={0.05}
       />
-      <div className={`${WRAP} relative pt-12 pb-16 md:pt-20 md:pb-24`}>
-        <div className="flex flex-wrap items-center justify-between gap-4 fade-up">
+      <div
+        className={`${WRAP} relative grid lg:grid-cols-12 gap-14 lg:gap-10 items-center pt-12 pb-20 md:pt-20 md:pb-28`}
+      >
+        <div className="lg:col-span-6">
           <a
             href="#receptionist"
             onClick={goReceptionist}
-            className="group inline-flex items-center gap-3 h-11 pl-1.5 pr-4 rounded-full bg-white/[0.07] border border-white/15 hover:bg-white/[0.12] transition-colors"
+            className="group inline-flex items-center gap-3 h-11 pl-1.5 pr-4 rounded-full bg-white/[0.07] border border-white/15 hover:bg-white/[0.12] transition-colors fade-up"
           >
             <span className="inline-flex items-center gap-1.5 h-8 px-3 rounded-full bg-primary text-[12px] font-semibold uppercase tracking-[0.08em] whitespace-nowrap">
               <span className="relative flex size-2" aria-hidden>
@@ -284,189 +255,40 @@ export function Hero() {
             </span>
             <ArrowRight className="size-4 text-white/60 transition-transform group-hover:translate-x-0.5" />
           </a>
-          <span className="inline-flex items-center gap-2 text-[13px] text-white/60">
-            {t("Digital marketing agency", "Agjenci e marketingut digjital")} ·{" "}
-            {t("Kosovo & Europe", "Kosovë & Evropë")}
-          </span>
+
+          <h1 className="mt-8 md:mt-10 text-[2.9rem] sm:text-[4rem] xl:text-[5rem] leading-[0.95] tracking-[-0.035em] max-w-[13ch] fade-up [animation-delay:60ms]">
+            {lang === "sq" ? (
+              <>
+                Reklama, dizajn & websites që ju sjellin{" "}
+                <Em className="text-[#8FA8D8]">klientë realë.</Em>
+              </>
+            ) : (
+              <>
+                Ads, design & websites that bring you{" "}
+                <Em className="text-[#8FA8D8]">real clients.</Em>
+              </>
+            )}
+          </h1>
+
+          <p className="mt-7 text-lg text-white/70 leading-relaxed max-w-lg fade-up [animation-delay:120ms]">
+            {t(
+              "We run your ads, design your posts, build your website and set up an AI that answers every message. You get more bookings and sales.",
+              "Ne menaxhojmë reklamat, dizajnojmë postimet, ndërtojmë faqen tuaj dhe vendosim një AI që i përgjigjet çdo mesazhi. Ju merrni më shumë rezervime dhe shitje.",
+            )}
+          </p>
+          <div className="mt-9 flex flex-col sm:flex-row gap-3 fade-up [animation-delay:160ms]">
+            <WhatsAppButton className={BTN_LIGHT} label={t("Get a free plan", "Merr plan falas")} />
+            <a href="#services" onClick={goServices} className={BTN_GHOST_LIGHT}>
+              {t("Our services", "Shërbimet tona")} <ArrowRight className="size-4" />
+            </a>
+          </div>
         </div>
 
-        <h1 className="mt-8 md:mt-10 text-[2.9rem] sm:text-[4.25rem] lg:text-[5.5rem] xl:text-[6.4rem] leading-[0.95] tracking-[-0.035em] max-w-[13ch] fade-up [animation-delay:60ms]">
-          {lang === "sq" ? (
-            <>
-              Reklama, dizajn & websites që ju sjellin{" "}
-              <Em className="text-[#8FA8D8]">klientë realë.</Em>
-            </>
-          ) : (
-            <>
-              Ads, design & websites that bring you{" "}
-              <Em className="text-[#8FA8D8]">real clients.</Em>
-            </>
-          )}
-        </h1>
-
-        <div className="mt-12 md:mt-16 grid lg:grid-cols-12 gap-10 lg:gap-8 items-end">
-          <div className="lg:col-span-4 fade-up [animation-delay:120ms]">
-            <p className="text-lg text-white/75 leading-relaxed">
-              {t(
-                "An AI receptionist that answers your clients 24/7, plus Meta ads, social media design and websites. For businesses in Kosovo and across Europe that want more messages, bookings and sales.",
-                "Recepsionist me AI që u përgjigjet klientëve tuaj 24/7, plus reklama në Meta, dizajn për rrjete sociale dhe websites. Për biznese në Kosovë dhe Evropë që duan më shumë mesazhe, rezervime dhe shitje.",
-              )}
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row sm:flex-wrap lg:flex-col xl:flex-row gap-3">
-              <WhatsAppButton
-                className={BTN_LIGHT}
-                label={t("Get a free plan", "Merr plan falas")}
-              />
-              <a href="#services" onClick={goServices} className={BTN_GHOST_LIGHT}>
-                {t("Our services", "Shërbimet tona")} <ArrowRight className="size-4" />
-              </a>
-            </div>
-            <ul className="mt-9 space-y-3 border-t border-white/10 pt-7">
-              {promises.map((p) => (
-                <li key={p} className="flex items-start gap-3 text-[15px] text-white/80">
-                  <span className="mt-0.5 grid place-items-center size-5 shrink-0 rounded-full bg-primary">
-                    <Check className="size-3" />
-                  </span>
-                  {p}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="lg:col-span-8 grid grid-cols-5 gap-3 sm:gap-4 fade-up [animation-delay:180ms]">
-            <figure className="group relative col-span-5 sm:col-span-3 h-[360px] sm:h-[500px] rounded-[28px] overflow-hidden bg-white/5">
-              <Photo
-                eager
-                src={IMG.heroStrategy}
-                alt={t(
-                  "Team planning a marketing campaign with sticky notes",
-                  "Ekip që planifikon një fushatë marketingu",
-                )}
-              />
-              <div className="absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-[rgba(10,26,58,0.75)] to-[rgba(10,26,58,0)]" />
-              <div className="absolute left-4 right-4 bottom-4 sm:right-auto sm:max-w-[310px] rounded-2xl bg-white text-foreground p-4 shadow-[0_20px_50px_-20px_rgba(0,0,0,.6)]">
-                <div className="flex items-center gap-2 text-[12px] text-muted-foreground">
-                  <span className="grid place-items-center size-6 rounded-full bg-[#25D366] text-white">
-                    <WhatsAppIcon className="size-3.5" />
-                  </span>
-                  <span className="font-medium text-foreground">WhatsApp</span> · {t("now", "tani")}
-                </div>
-                <p className="mt-2.5 text-[14px] leading-snug">
-                  {t(
-                    "Hi! I saw your ad on Instagram. Do you have a free slot on Saturday?",
-                    "Përshëndetje! Pashë reklamën tuaj në Instagram. A keni termin të lirë të shtunën?",
-                  )}
-                </p>
-              </div>
-            </figure>
-            <div className="col-span-5 sm:col-span-2 grid grid-cols-2 sm:grid-cols-1 sm:grid-rows-[1fr_auto] gap-3 sm:gap-4">
-              <div className="relative min-h-[200px] rounded-[28px] bg-white text-foreground p-4 sm:p-5 flex flex-col">
-                <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
-                  {t("Where your clients are", "Ku janë klientët tuaj")}
-                </span>
-                <div className="mt-auto pt-4 grid grid-cols-3 gap-2">
-                  {(
-                    [
-                      "meta",
-                      "instagram",
-                      "facebook",
-                      "whatsapp",
-                      "messenger",
-                      "google",
-                    ] as BrandKey[]
-                  ).map((b) => (
-                    <span
-                      key={b}
-                      className="grid place-items-center aspect-square rounded-2xl border border-border bg-background"
-                    >
-                      <BrandLogo brand={b} className="size-6 sm:size-7" />
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <a
-                href="#receptionist"
-                onClick={goReceptionist}
-                className="group relative rounded-[28px] bg-primary p-5 sm:p-6 flex flex-col justify-between min-h-[200px] overflow-hidden ring-1 ring-white/10 hover:bg-[#0F4789] transition-colors"
-              >
-                <BrandCircles
-                  className="absolute -right-10 -bottom-12 w-44 text-white"
-                  opacity={0.1}
-                />
-                <span className="relative flex items-center justify-between gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-white/70">
-                  {t("AI Receptionist", "Recepsionist AI")}
-                  <ArrowUpRight className="size-4 text-white transition-transform group-hover:rotate-45" />
-                </span>
-                <div className="relative">
-                  <div className="text-5xl sm:text-6xl font-semibold tracking-[-0.04em]">24/7</div>
-                  <p className="mt-1.5 text-white/80 text-sm leading-snug">
-                    {t(
-                      "Replies to your clients, even at 3 a.m.",
-                      "U përgjigjet klientëve, edhe në 3 të natës.",
-                    )}
-                  </p>
-                  <span className="mt-3 inline-flex items-center gap-1.5 text-[13px] font-semibold text-white">
-                    {t("See how it works", "Shiko si funksionon")}{" "}
-                    <ArrowRight className="size-3.5" />
-                  </span>
-                </div>
-              </a>
-            </div>
-          </div>
+        <div className="lg:col-span-6 xl:col-span-5 xl:col-start-8 fade-up [animation-delay:200ms]">
+          <HeroFlow />
         </div>
       </div>
     </section>
-  );
-}
-
-/* ------------------------------------------------------------------ Marquee */
-
-export function Marquee() {
-  const { t } = useSite();
-  const items: BrandKey[] = [
-    "meta",
-    "instagram",
-    "facebook",
-    "whatsapp",
-    "messenger",
-    "google",
-    "tiktok",
-  ];
-  const names: Record<BrandKey, string> = {
-    meta: "Meta",
-    instagram: "Instagram",
-    facebook: "Facebook",
-    whatsapp: "WhatsApp",
-    messenger: "Messenger",
-    google: "Google",
-    tiktok: "TikTok",
-  };
-  const row = (hidden: boolean) => (
-    <ul className="flex shrink-0 items-center" aria-hidden={hidden || undefined}>
-      {items.map((b) => (
-        <li key={b} className="flex items-center gap-3 md:gap-4 px-8 md:px-12">
-          <BrandLogo brand={b} color="currentColor" className="size-7 md:size-9" />
-          <span className="text-[1.6rem] md:text-[2.4rem] font-semibold tracking-[-0.035em] whitespace-nowrap">
-            {names[b]}
-          </span>
-        </li>
-      ))}
-    </ul>
-  );
-  return (
-    <div className="bg-primary text-white overflow-hidden border-y border-white/10">
-      <div className="flex items-stretch">
-        <span className="hidden md:flex shrink-0 items-center gap-2 px-6 bg-[#0F4789] font-mono text-[11px] uppercase tracking-[0.16em] text-white/80 border-r border-white/15 relative z-10">
-          {t("Platforms we run", "Platformat ku punojmë")}
-        </span>
-        <div className="py-5 md:py-7 overflow-hidden flex-1">
-          <div className="marquee-track">
-            {row(false)}
-            {row(true)}
-          </div>
-        </div>
-      </div>
-    </div>
   );
 }
 
@@ -529,7 +351,7 @@ export function About() {
           <p className="mt-8 text-[1.9rem] sm:text-[2.6rem] md:text-[3.4rem] leading-[1.1] font-semibold tracking-[-0.035em] max-w-[1100px]">
             {lang === "sq" ? (
               <>
-                Jemi një ekip marketingu nga Kosova {pills.team} që i ndihmon bizneset të fitojnë
+                Jemi një ekip marketingu {pills.team} që i ndihmon bizneset të fitojnë
                 klientë online,{" "}
                 <span className="text-[#8A93A3]">
                   me reklama {pills.ads} dizajn {pills.design} dhe websites {pills.web} që
@@ -538,7 +360,7 @@ export function About() {
               </>
             ) : (
               <>
-                We're a marketing team from Kosovo {pills.team} helping businesses win clients
+                We're a marketing team {pills.team} helping businesses win clients
                 online,{" "}
                 <span className="text-[#8A93A3]">
                   with ads {pills.ads} design {pills.design} and websites {pills.web} that
@@ -574,27 +396,22 @@ export function About() {
 
 /* ------------------------------------------------------------------ Services */
 
-/** Numbered list of all services, each with its blueprint diagram. Used on the home page and /services. */
-export function ServiceList({ headingLevel = "h3" }: { headingLevel?: "h2" | "h3" }) {
-  const { t, lang } = useSite();
-  const H = headingLevel;
+/** Numbered list of all services, each with its blueprint diagram. */
+export function ServiceList() {
+  const { lang } = useSite();
   return (
     <ul className="border-b border-border">
       {services.map((s, i) => {
         return (
           <li key={s.slug} className="border-t border-border">
-            <Link
-              to="/services/$slug"
-              params={{ slug: s.slug }}
-              className="group grid grid-cols-12 gap-x-4 gap-y-6 lg:gap-x-10 py-10 md:py-14 items-center"
-            >
+            <div className="grid grid-cols-12 gap-x-4 gap-y-6 lg:gap-x-10 py-10 md:py-14 items-center">
               <span className="col-span-12 lg:col-span-1 self-start text-[13px] font-medium text-muted-foreground tabular-nums lg:pt-3">
                 ({pad(i + 1)})
               </span>
               <div className="col-span-12 lg:col-span-6 order-last lg:order-none">
-                <H className="text-[2.1rem] sm:text-[2.75rem] md:text-[3.25rem] leading-[1] tracking-[-0.04em] transition-colors group-hover:text-primary">
+                <h3 className="text-[2.1rem] sm:text-[2.75rem] md:text-[3.25rem] leading-[1] tracking-[-0.04em]">
                   {s.name[lang]}
-                </H>
+                </h3>
                 <p className="mt-5 text-[17px] text-muted-foreground leading-relaxed max-w-xl">
                   {s.short[lang]}
                 </p>
@@ -608,18 +425,12 @@ export function ServiceList({ headingLevel = "h3" }: { headingLevel?: "h2" | "h3
                     </li>
                   ))}
                 </ul>
-                <span className="mt-8 inline-flex items-center gap-2 text-[15px] font-medium text-primary lg:hidden">
-                  {t("Learn more", "Më shumë")} <ArrowRight className="size-4" />
-                </span>
               </div>
               <ServiceVisual
                 slug={s.slug}
-                className="col-span-12 lg:col-span-4 lg:col-start-8 aspect-[4/3] rounded-[22px] transition-transform duration-500 group-hover:-translate-y-1"
+                className="col-span-12 lg:col-span-5 lg:col-start-8 aspect-[4/3] rounded-[22px]"
               />
-              <span className="hidden lg:grid col-span-1 justify-self-end place-items-center size-14 rounded-full border border-border-strong transition-all duration-300 group-hover:bg-primary group-hover:border-primary group-hover:text-white group-hover:rotate-45">
-                <ArrowUpRight className="size-5" />
-              </span>
-            </Link>
+            </div>
           </li>
         );
       })}
@@ -654,12 +465,6 @@ export function ServicesSection() {
                 "Zgjidhni një, ose kombinojini. Çmimi varet nga puna, prandaj na shkruani për ofertë.",
               )}
             </p>
-            <Link
-              to="/services"
-              className="mt-5 inline-flex items-center gap-2 font-medium link-underline"
-            >
-              {t("All services", "Të gjitha shërbimet")} <ArrowRight className="size-4" />
-            </Link>
           </Reveal>
         </div>
         <Reveal className="mt-14 md:mt-20" delay={80}>
@@ -732,8 +537,8 @@ export function Industries() {
       I: Hotel,
       n: t("Hotels & tourism", "Hotele & turizëm"),
       d: t(
-        "Reach guests in Kosovo and across Europe.",
-        "Arrini mysafirë në Kosovë dhe në gjithë Evropën.",
+        "Reach guests before they book somewhere else.",
+        "Arrini mysafirët para se të rezervojnë diku tjetër.",
       ),
     },
   ];
@@ -1182,8 +987,8 @@ export function Footer() {
             </HomeLink>
             <p className="mt-6 text-white/55 max-w-xs leading-relaxed">
               {t(
-                "Digital marketing for businesses in Kosovo and across Europe.",
-                "Marketing digjital për biznese në Kosovë dhe në gjithë Evropën.",
+                "Digital marketing for businesses that want more clients.",
+                "Marketing digjital për biznese që duan më shumë klientë.",
               )}
             </p>
           </div>
@@ -1194,13 +999,12 @@ export function Footer() {
             <ul className="mt-5 space-y-3 text-[15px]">
               {services.map((s) => (
                 <li key={s.slug}>
-                  <Link
-                    to="/services/$slug"
-                    params={{ slug: s.slug }}
+                  <a
+                    href={`${import.meta.env.BASE_URL}#services`}
                     className="text-white/75 hover:text-white transition-colors"
                   >
                     {s.name[lang]}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -1210,11 +1014,6 @@ export function Footer() {
               {t("Company", "Kompania")}
             </p>
             <ul className="mt-5 space-y-3 text-[15px]">
-              <li>
-                <Link to="/services" className="text-white/75 hover:text-white transition-colors">
-                  {t("All services", "Të gjitha shërbimet")}
-                </Link>
-              </li>
               <li>
                 <Link to="/assistant" className="text-white/75 hover:text-white transition-colors">
                   {t("AI demo", "Demo AI")}

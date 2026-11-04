@@ -233,35 +233,6 @@ html.js .reveal[data-visible="false"] {
   font-weight: 600;
 }
 
-/* Infinite horizontal marquee: the track holds the content twice. */
-@utility marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee 38s linear infinite;
-}
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-/* Slow zoom on photos inside a hovered .group. */
-@utility img-zoom {
-  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
-  :where(.group):hover & {
-    transform: scale(1.05);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track {
-    animation: none;
-  }
-}
-
 /* ---------- Blueprint diagrams ---------- */
 .bp-grid {
   background-color: #0a1a3a;
