@@ -61,11 +61,12 @@ export const Route = createRootRoute({
     links: [
       {
         rel: "preload",
-        href: "/fonts/BricolageGrotesque-Variable.woff2",
+        href: `${import.meta.env.BASE_URL}fonts/BricolageGrotesque-Variable.woff2`,
         as: "font",
         type: "font/woff2",
         crossOrigin: "anonymous",
       },
+      { rel: "icon", href: `${import.meta.env.BASE_URL}favicon.ico` },
       { rel: "stylesheet", href: appCss },
     ],
   }),

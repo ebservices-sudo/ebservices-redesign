@@ -12,6 +12,7 @@ import {
   Footer,
 } from "@/components/site/Sections";
 import { AdSimulator } from "@/components/site/Simulator";
+import { IMG } from "@/lib/images";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -25,7 +26,7 @@ export const Route = createFileRoute("/")({
     ],
     links: [
       { rel: "canonical", href: "https://ebservicesks.com/" },
-      { rel: "preload", as: "image", href: "/images/hero-strategy.webp" },
+      { rel: "preload", as: "image", href: IMG.heroStrategy },
     ],
   }),
   component: Index,

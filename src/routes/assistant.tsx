@@ -5,6 +5,7 @@ import { ArrowLeft, RotateCcw, Send, Sparkles } from "lucide-react";
 import { Logo } from "@/components/site/Header";
 import { WhatsAppIcon } from "@/components/site/WhatsApp";
 import { chatWithAssistant } from "@/lib/assistant.functions";
+import { IS_STATIC_DEMO, offlineReply } from "@/lib/assistant.offline";
 import {
   DEMO_BUSINESSES,
   DEMO_SUGGESTIONS,
@@ -81,7 +82,14 @@ function AssistantPage() {
         role: m.role === "user" ? ("user" as const) : ("assistant" as const),
         content: m.text,
       }));
-      const { reply } = await chat({ data: { messages: history, business } });
+      const { reply } = IS_STATIC_DEMO
+        ? await new Promise<{ reply: string }>((resolve) =>
+            setTimeout(
+              () => resolve({ reply: offlineReply(business, text, history.filter((m) => m.role === "user").length) }),
+              700,
+            ),
+          )
+        : await chat({ data: { messages: history, business } });
       setMessages((m) => [...m, { role: "bot", text: reply || ERROR_MSG }]);
     } catch (e) {
       console.error(e);
