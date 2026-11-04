@@ -1,33 +1,60 @@
-name: Deploy to Cloudflare
+name: Deploy to GitHub Pages
+
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
+
+      - name: Set up GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
       - name: Install dependencies
         run: npm install --legacy-peer-deps
-      - name: Build
+
+      - name: Build static site
         run: npm run build
-      - name: Inject secret into wrangler.json
+        env:
+          GITHUB_PAGES: "true"
+          VITE_STATIC_DEMO: "true"
+          PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}/
+
+      - name: Add 404 fallback
         run: |
-          node -e "
-          const fs = require('fs');
-          const cfg = JSON.parse(fs.readFileSync('.output/server/wrangler.json'));
-          cfg.vars = cfg.vars || {};
-          cfg.vars.ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
-          fs.writeFileSync('.output/server/wrangler.json', JSON.stringify(cfg));
-          "
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-      - name: Deploy
-        run: npx wrangler deploy
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          cp dist/client/_shell.html dist/client/404.html
+          touch dist/client/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/client
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
