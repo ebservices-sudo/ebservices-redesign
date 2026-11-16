@@ -143,7 +143,7 @@ export function Header() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   const nav = [
-    { id: "receptionist", label: t("AI Receptionist", "Recepsionisti AI"), main: true },
+    { id: "receptionist", label: t("AI Receptionist", "Recepsionisti AI") },
     { id: "services", label: t("Services", "Shërbimet") },
     { id: "industries", label: t("Industries", "Industritë") },
     { id: "process", label: t("Process", "Procesi") },
@@ -189,18 +189,8 @@ export function Header() {
               key={n.id}
               href={`${import.meta.env.BASE_URL}#${n.id}`}
               onClick={go(n.id)}
-              className={`px-4 h-9 inline-flex items-center gap-2 rounded-full transition-colors ${
-                n.main
-                  ? "bg-primary text-white hover:bg-[#0F4789]"
-                  : "text-white/70 hover:text-white hover:bg-white/10"
-              }`}
+              className="px-4 h-9 inline-flex items-center rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors"
             >
-              {n.main && (
-                <span className="relative flex size-2" aria-hidden>
-                  <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-70" />
-                  <span className="relative size-2 rounded-full bg-[#25D366]" />
-                </span>
-              )}
               {n.label}
             </a>
           ))}
@@ -210,16 +200,15 @@ export function Header() {
           <div className="hidden sm:block">
             <LangSwitch light />
           </div>
-          <a
-            href={`${import.meta.env.BASE_URL}#contact`}
-            onClick={go("contact")}
+          <Link
+            to="/assistant"
             className="group hidden sm:inline-flex items-center gap-2 h-11 pl-5 pr-1.5 rounded-full bg-white text-navy font-medium text-[14px] hover:bg-[#E6ECF7] transition-colors whitespace-nowrap"
           >
-            {t("Let's talk", "Le të flasim")}
+            {t("Chat with the AI Assistant", "Bisedo me Asistentin AI")}
             <span className="grid place-items-center size-8 rounded-full bg-primary text-white transition-transform group-hover:rotate-45">
               <ArrowUpRight className="size-4" />
             </span>
-          </a>
+          </Link>
           <button
             onClick={() => setOpen((v) => !v)}
             aria-label="Menu"
@@ -240,21 +229,20 @@ export function Header() {
               key={n.id}
               href={`${import.meta.env.BASE_URL}#${n.id}`}
               onClick={go(n.id)}
-              className={`py-4 border-b border-white/10 text-2xl font-semibold tracking-tight flex items-center gap-3 ${n.main ? "text-[#8FA8D8]" : ""}`}
+              className="py-4 border-b border-white/10 text-2xl font-semibold tracking-tight flex items-center gap-3"
             >
-              {n.main && <span className="size-2.5 rounded-full bg-[#25D366]" aria-hidden />}
               {n.label}
             </a>
           ))}
           <div className="mt-6 flex items-center justify-between gap-4">
             <LangSwitch light />
-            <a
-              href={`${import.meta.env.BASE_URL}#contact`}
-              onClick={go("contact")}
+            <Link
+              to="/assistant"
+              onClick={() => setOpen(false)}
               className="inline-flex items-center h-11 px-6 rounded-full bg-white text-navy font-medium text-sm"
             >
-              {t("Let's talk", "Le të flasim")}
-            </a>
+              {t("Chat with the AI Assistant", "Bisedo me Asistentin AI")}
+            </Link>
           </div>
         </div>
       </div>

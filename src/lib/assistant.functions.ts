@@ -45,11 +45,13 @@ CALENDAR (next 14 days):
 ${lines.join("\n")}`;
 }
 
-const SYSTEM_PROMPT = (b: DemoBusiness) => `You are the friendly WhatsApp chatbot for "${b.name}", ${b.kind} in Kosovo.
+const SYSTEM_PROMPT = (b: DemoBusiness, siteLang: "sq" | "en") => `You are the friendly WhatsApp chatbot for "${b.name}", ${b.kind} in Kosovo.
 This is a live demo on the EB Services website: all business details below are sample data.
 
 LANGUAGE:
-- Reply in the language the customer writes in. Default to English.
+- You are bilingual: Albanian (shqip) and English. Always reply in the language of the customer's latest message, in natural, correct Albanian or English.
+- If the customer switches language mid-conversation, switch with them. If a message has no clear language (e.g. "ok", a number), keep the language you were using.
+- Before the customer has written anything clear, use ${siteLang === "sq" ? "Albanian" : "English"} (the website's selected language). The business details below are written in English; translate them when replying in Albanian.
 - Keep replies short and natural, like a real WhatsApp message (1–3 sentences, an emoji at most once in a while).
 
 BUSINESS INFORMATION:
@@ -78,12 +80,16 @@ HOW TO BEHAVE:
 - Only talk about this business. Politely decline unrelated topics.
 - If someone asks who built you or how to get a chatbot like this, say it was set up by EB Services and they can book a free 15-minute demo via the "Book a free demo" button on this page.`;
 
+const MessagesSchema = z
+  .array(z.object({ role: z.enum(["user", "assistant"]), content: z.string().max(2000) }))
+  .min(1);
+
 const InputSchema = z.object({
-  messages: z
-    .array(z.object({ role: z.enum(["user", "assistant"]), content: z.string().max(2000) }))
-    .min(1),
+  messages: MessagesSchema,
   business: z.enum(["dental", "restaurant", "salon", "shop"]).default("dental"),
+  lang: z.enum(["sq", "en"]).default("en"),
 });
+
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
 
@@ -94,42 +100,46 @@ function trimHistory(messages: ChatMessage[]) {
   return recent;
 }
 
+async function callClaude(system: string, messages: ChatMessage[]) {
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!apiKey) throw new Error("ANTHROPIC_API_KEY is not set");
+
+  const res = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: {
+      "x-api-key": apiKey,
+      "anthropic-version": "2023-06-01",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: "claude-haiku-4-5-20251001",
+      max_tokens: 350,
+      temperature: 0.4,
+      system,
+      messages: trimHistory(messages),
+    }),
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Anthropic API error ${res.status}: ${text}`);
+  }
+
+  const json = (await res.json()) as { content?: { type: string; text?: string }[] };
+  return (
+    json.content
+      ?.filter((block) => block.type === "text")
+      .map((block) => block.text)
+      .join("")
+      .trim() ?? ""
+  );
+}
+
+/** The demo WhatsApp chatbot on /assistant (plays a sample business). */
 export const chatWithAssistant = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => InputSchema.parse(data))
   .handler(async ({ data }) => {
-    const apiKey = process.env.ANTHROPIC_API_KEY;
-    if (!apiKey) throw new Error("ANTHROPIC_API_KEY is not set");
-
     const business = getDemoBusiness(data.business as DemoBusinessId);
-
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "x-api-key": apiKey,
-        "anthropic-version": "2023-06-01",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "claude-haiku-4-5-20251001",
-        max_tokens: 350,
-        temperature: 0.4,
-        system: SYSTEM_PROMPT(business),
-        messages: trimHistory(data.messages),
-      }),
-    });
-
-    if (!res.ok) {
-      const text = await res.text();
-      throw new Error(`Anthropic API error ${res.status}: ${text}`);
-    }
-
-    const json = (await res.json()) as { content?: { type: string; text?: string }[] };
-    const reply =
-      json.content
-        ?.filter((block) => block.type === "text")
-        .map((block) => block.text)
-        .join("")
-        .trim() ?? "";
-
+    const reply = await callClaude(SYSTEM_PROMPT(business, data.lang), data.messages);
     return { reply };
   });

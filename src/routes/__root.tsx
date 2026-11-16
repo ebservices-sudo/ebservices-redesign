@@ -7,7 +7,7 @@ import appCss from "../styles.css?url";
 
 const TITLE = "EB Services — Digital Marketing Agency";
 const DESCRIPTION =
-  "An AI receptionist that answers your clients 24/7, plus Meta ads, ad design and websites for businesses that want more clients.";
+  "Ads, design, websites and AI agents for growing businesses.";
 
 // Runs before first paint: applies the saved/system theme (no flash) and marks JS as available
 // so scroll-reveal content is only hidden when it can actually be revealed.

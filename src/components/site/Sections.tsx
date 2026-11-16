@@ -341,7 +341,6 @@ export function About() {
     { v: "4", l: t("services under one roof", "shërbime nën një çati") },
     { v: "24/7", l: t("AI replies to your clients", "përgjigje me AI për klientët") },
     { v: "< 10s", l: t("average AI reply time", "kohë mesatare përgjigjeje") },
-    { v: "0", l: t("posts published without your OK", "postime pa miratimin tuaj") },
   ];
   return (
     <section id="about" className="scroll-mt-20 py-24 md:py-36">
@@ -351,21 +350,25 @@ export function About() {
           <p className="mt-8 text-[1.9rem] sm:text-[2.6rem] md:text-[3.4rem] leading-[1.1] font-semibold tracking-[-0.035em] max-w-[1100px]">
             {lang === "sq" ? (
               <>
-                Jemi një ekip marketingu {pills.team} që i ndihmon bizneset të fitojnë
-                klientë online,{" "}
+                Jemi një ekip {pills.team} që ndihmojmë bizneset në rritje të prezencës
+                online,{" "}
                 <span className="text-[#8A93A3]">
-                  me reklama {pills.ads} dizajn {pills.design} dhe websites {pills.web} që
+                  me <span className="whitespace-nowrap">reklama {pills.ads},</span>{" "}
+                  <span className="whitespace-nowrap">dizajn {pills.design},</span>{" "}
+                  <span className="whitespace-nowrap">websites {pills.web}</span> dhe
                 </span>{" "}
-                <Em className="text-primary">funksionojnë vërtet.</Em>
+                <Em className="text-primary">agjentë AI.</Em>
               </>
             ) : (
               <>
-                We're a marketing team {pills.team} helping businesses win clients
-                online,{" "}
+                We're a team {pills.team} that helps growing businesses build their online
+                presence,{" "}
                 <span className="text-[#8A93A3]">
-                  with ads {pills.ads} design {pills.design} and websites {pills.web} that
+                  with <span className="whitespace-nowrap">ads {pills.ads},</span>{" "}
+                  <span className="whitespace-nowrap">design {pills.design},</span>{" "}
+                  <span className="whitespace-nowrap">websites {pills.web}</span> and
                 </span>{" "}
-                <Em className="text-primary">actually work.</Em>
+                <Em className="text-primary">AI agents.</Em>
               </>
             )}
           </p>
@@ -373,17 +376,17 @@ export function About() {
 
         <Reveal
           delay={80}
-          className="mt-16 md:mt-24 grid grid-cols-2 lg:grid-cols-4 border-t border-border"
+          className="mt-16 md:mt-24 grid sm:grid-cols-3 border-t border-border"
         >
           {facts.map((f, i) => (
             <div
               key={f.l}
-              className={`pt-8 pb-2 pr-6 ${i > 0 ? "lg:border-l lg:pl-8" : ""} ${i % 2 === 1 ? "border-l pl-6 lg:pl-8" : ""} ${i > 1 ? "border-t lg:border-t-0 mt-0" : ""}`}
+              className={`grid grid-cols-[7.5rem_1fr] items-center gap-4 py-6 sm:block sm:pt-8 sm:pb-2 sm:pr-6 ${i > 0 ? "border-t sm:border-t-0 sm:border-l sm:pl-8" : ""}`}
             >
-              <div className="text-[3rem] md:text-[4.25rem] font-semibold tracking-[-0.05em] leading-none text-foreground">
+              <div className="text-[2.6rem] sm:text-[3rem] md:text-[4.25rem] font-semibold tracking-[-0.05em] leading-none text-foreground">
                 {f.v}
               </div>
-              <p className="mt-3 text-[15px] text-muted-foreground leading-snug max-w-[20ch]">
+              <p className="sm:mt-3 text-[15px] text-muted-foreground leading-snug max-w-[20ch]">
                 {f.l}
               </p>
             </div>
@@ -443,30 +446,20 @@ export function ServicesSection() {
   return (
     <section id="services" className="scroll-mt-20 pb-24 md:pb-36">
       <div className={WRAP}>
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
-          <SectionHead
-            label={t("What we do", "Çfarë bëjmë")}
-            title={
-              lang === "sq" ? (
-                <>
-                  Katër shërbime. <Em className="text-primary">Një ekip.</Em>
-                </>
-              ) : (
-                <>
-                  Four services. <Em className="text-primary">One team.</Em>
-                </>
-              )
-            }
-          />
-          <Reveal className="lg:max-w-sm" delay={60}>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              {t(
-                "Use one, or combine them. Prices depend on the work, so message us for an offer.",
-                "Zgjidhni një, ose kombinojini. Çmimi varet nga puna, prandaj na shkruani për ofertë.",
-              )}
-            </p>
-          </Reveal>
-        </div>
+        <SectionHead
+          label={t("What we do", "Çfarë bëjmë")}
+          title={
+            lang === "sq" ? (
+              <>
+                Katër shërbime. <Em className="text-primary">Një ekip.</Em>
+              </>
+            ) : (
+              <>
+                Four services. <Em className="text-primary">One team.</Em>
+              </>
+            )
+          }
+        />
         <Reveal className="mt-14 md:mt-20" delay={80}>
           <ServiceList />
         </Reveal>
@@ -611,7 +604,12 @@ export function Industries() {
               "Nuk e shihni industrinë tuaj? Punojmë me çdo lloj biznesi.",
             )}
           </p>
-          <WhatsAppButton className={BTN_LIGHT} label={t("Ask us", "Na pyesni")} />
+          <Link to="/assistant" className={BTN_LIGHT}>
+            {t("Ask the AI Assistant", "Pyet Asistentin AI")}
+            <BtnIcon tone="blue">
+              <MessageCircle className="size-4" />
+            </BtnIcon>
+          </Link>
         </Reveal>
       </div>
     </section>
@@ -701,10 +699,7 @@ export function ReceptionistSection() {
       <div className={`${WRAP} grid lg:grid-cols-12 gap-14 lg:gap-10 items-center`}>
         <div className="lg:col-span-6">
           <SectionHead
-            label={t(
-              "Our main service · AI Receptionist",
-              "Shërbimi ynë kryesor · Recepsionist me AI",
-            )}
+            label={t("AI Receptionist", "Recepsionist me AI")}
             title={
               lang === "sq" ? (
                 <>
@@ -864,10 +859,12 @@ export function Process() {
                 )}
               </p>
               <div className="mt-7">
-                <WhatsAppButton
-                  className={BTN_LIGHT}
-                  label={t("Book the free call", "Rezervo bisedën falas")}
-                />
+                <Link to="/assistant" className={BTN_LIGHT}>
+                  {t("Chat with the AI Assistant", "Bisedo me Asistentin AI")}
+                  <BtnIcon tone="blue">
+                    <MessageCircle className="size-4" />
+                  </BtnIcon>
+                </Link>
               </div>
             </Reveal>
           </div>
@@ -941,8 +938,22 @@ export function CTA(_props: { index?: string | null }) {
               "Fillojmë me një bisedë falas. Na tregoni çfarë ju duhet dhe ju dërgojmë plan dhe ofertë të qartë.",
             )}
           </p>
-          <div className="mt-10 flex flex-col sm:flex-row gap-3">
-            <WhatsAppButton className={BTN_LIGHT} />
+          <div className="mt-10 flex flex-col sm:flex-row sm:flex-wrap gap-3">
+            <Link to="/assistant" className={BTN_LIGHT}>
+              {t("Chat with the AI Assistant", "Bisedo me Asistentin AI")}
+              <BtnIcon tone="blue">
+                <MessageCircle className="size-4" />
+              </BtnIcon>
+            </Link>
+            <a
+              href={waLink(t(MESSAGES.hello, MESSAGES.helloSq))}
+              target="_blank"
+              rel="noreferrer"
+              className={BTN_GHOST_LIGHT}
+            >
+              <WhatsAppIcon className="size-4" />
+              {t("Message us on WhatsApp", "Na shkruani në WhatsApp")}
+            </a>
             <a href={`mailto:${EMAIL}`} className={BTN_GHOST_LIGHT}>
               {t("Send an email", "Dërgo email")}
             </a>

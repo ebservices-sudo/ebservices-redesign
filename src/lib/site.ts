@@ -13,6 +13,7 @@ export const MESSAGES = {
   hello: "Hi EB Services, I'd like to know more about your services.",
   helloSq: "Përshëndetje EB Services, dëshiroj më shumë informacion për shërbimet tuaja.",
   demo: "Hi EB Services! I'd like to book a free 15-minute chatbot demo.",
+  demoSq: "Përshëndetje EB Services! Dëshiroj të rezervoj një demo falas 15-minutëshe të chatbot-it.",
 } as const;
 
 export function waLink(text: string = MESSAGES.hello) {

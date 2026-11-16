@@ -19,7 +19,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "An AI receptionist that answers your clients 24/7, plus Meta ads, ad design and websites for businesses that want more clients.",
+          "Ads, design, websites and AI agents for growing businesses.",
       },
     ],
     links: [

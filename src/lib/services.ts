@@ -266,7 +266,7 @@ const serviceList: Service[] = [
   },
 ];
 
-/** The AI receptionist is the main service, so it always comes first (lists, numbering, footer). */
+/** Display order of the services (lists, numbering, footer). */
 export const services: Service[] = [
   ...serviceList.filter((s) => s.slug === "ai-receptionist"),
   ...serviceList.filter((s) => s.slug !== "ai-receptionist"),

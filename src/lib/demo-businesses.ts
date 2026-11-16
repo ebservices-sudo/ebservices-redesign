@@ -16,6 +16,8 @@ export type DemoBusiness = {
   location: string;
   offer: string;
   booking: string;
+  /** Albanian versions of the label, hours, location and first few prices (for the offline demo). */
+  sq: { label: string; hoursText: string; location: string; top: string[] };
 };
 
 export const DEMO_BUSINESSES: DemoBusiness[] = [
@@ -43,6 +45,17 @@ export const DEMO_BUSINESSES: DemoBusiness[] = [
 - Bookable times: every hour, 08:00–16:00 on weekdays and 08:00–12:00 on Saturday.
 - To book, collect: name, phone number, service or problem, date and time.
 - Severe pain, swelling, a broken tooth or bleeding → treat as urgent and suggest the earliest slot.`,
+    sq: {
+      label: "Klinikë dentare",
+      hoursText: "e hënë–e premte 08:00–17:00, e shtunë 08:00–13:00, e diel mbyllur",
+      location: "Prishtinë (lokacion demo — nuk ka adresë reale)",
+      top: [
+        "Kontroll & konsultë: €20–40",
+        "Pastrim profesional i dhëmbëve: €30–50",
+        "Zbardhim i dhëmbëve: €150–250",
+        "Mbushje: €40–80",
+      ],
+    },
   },
   {
     id: "restaurant",
@@ -64,6 +77,12 @@ Vegetarian options available. Takeaway available. No delivery.`,
 - Tables for 1–10 people. Larger groups / events → hand off to a person.
 - Bookable times: every 30 minutes from 12:00 to 21:30 (Sunday from 12:00).
 - To book, collect: date, time, number of people and a name.`,
+    sq: {
+      label: "Restorant",
+      hoursText: "e hënë–e shtunë 08:00–23:00, e diel 10:00–23:00",
+      location: "Qendra e Prishtinës (lokacion demo — nuk ka adresë reale)",
+      top: ["Pica: €5–8", "Pasta: €6–9", "Pjata nga skara: €8–14", "Sallata: €4–6"],
+    },
   },
   {
     id: "salon",
@@ -83,6 +102,17 @@ Vegetarian options available. Takeaway available. No delivery.`,
     booking: `APPOINTMENTS:
 - Bookable times: every 30 minutes from opening until 1 hour before closing.
 - To book, collect: service, date, time and a name.`,
+    sq: {
+      label: "Sallon",
+      hoursText: "e hënë–e premte 09:00–19:00, e shtunë 09:00–17:00, e diel mbyllur",
+      location: "Prishtinë, afër qendrës (lokacion demo — nuk ka adresë reale)",
+      top: [
+        "Prerje & stilim për femra: €10–20",
+        "Prerje për meshkuj: €5–8",
+        "Ngjyrosje flokësh: €25–50",
+        "Manikyr: €10–15",
+      ],
+    },
   },
   {
     id: "shop",
@@ -103,6 +133,12 @@ Delivery across Kosovo in 2–3 working days.`,
 - Customers can reserve items to pick up in store (kept for 48 hours), or book a time to come in.
 - To reserve, collect: item, size, pick-up day and a name.
 - Stock questions about a specific item → say you'll check with the team (hand off to a person).`,
+    sq: {
+      label: "Dyqan",
+      hoursText: "e hënë–e shtunë 09:00–21:00, e diel 10:00–18:00",
+      location: "Prishtinë, në qendër (lokacion demo — nuk ka adresë reale)",
+      top: ["Bluza: €10–20", "Xhinse: €25–45", "Xhaketa: €40–90", "Atlete: €40–100"],
+    },
   },
 ];
 
@@ -110,9 +146,17 @@ export function getDemoBusiness(id: DemoBusinessId) {
   return DEMO_BUSINESSES.find((b) => b.id === id) ?? DEMO_BUSINESSES[0];
 }
 
-export const DEMO_SUGGESTIONS = [
-  "What are your opening hours?",
-  "How much does it cost?",
-  "Can I book for Saturday?",
-  "Where are you located?",
-];
+export const DEMO_SUGGESTIONS: Record<"sq" | "en", string[]> = {
+  en: [
+    "What are your opening hours?",
+    "How much does it cost?",
+    "Can I book for Saturday?",
+    "Where are you located?",
+  ],
+  sq: [
+    "Cili është orari juaj?",
+    "Sa kushton?",
+    "A mund të rezervoj për të shtunën?",
+    "Ku ndodheni?",
+  ],
+};
